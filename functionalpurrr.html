@@ -401,7 +401,7 @@
 McEwen Khundi, PhD 
 </div>
         <p class="quarto-title-affiliation">
-            Postdoc Research Fellow
+            Postdoctoral Research Fellow
           </p>
     </div>
 </div>
@@ -589,7 +589,7 @@ McEwen Khundi, PhD
 x + y
 
 }
-&lt;bytecode: 0x7f913690edb8&gt;</code></pre>
+&lt;bytecode: 0x7f7f6b702198&gt;</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -607,7 +607,7 @@ x + y
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x7f9137d38228&gt;
+&lt;bytecode: 0x7f7f9af59c28&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -631,7 +631,8 @@ UseMethod("mean")
 <li><p>Character</p></li>
 </ul></li>
 <li><p>In lists elements can be of different types</p></li>
-<li><p>Factors, dates, data frames and tibbles are made from atomic or lists by adding attributes</p></li>
+<li><p>Factors, dates, data frames and tibbles are made from atomic or lists by adding attributes</p>
+<p><a href="https://r4ds.had.co.nz/vectors.html">R for Data Science: Vectors</a></p></li>
 </ol>
 </section>
 <section id="example-vectors" class="slide level2">
@@ -743,8 +744,8 @@ UseMethod("mean")
 </div>
 </div>
 </section>
-<section id="dimensions-attribute" class="slide level2">
-<h2>Dimensions attribute</h2>
+<section id="dimension-attribute" class="slide level2">
+<h2>Dimension attribute</h2>
 <p>Another common and important attribute of vectors is the dimensions.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -797,8 +798,28 @@ UseMethod("mean")
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 150   5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co">#brief structure of iris</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a><span class="fu">str</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co">#all the attributes</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a><span class="fu">attributes</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$names
+[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     
+
+$class
+[1] "data.frame"
+
+$row.names
+  [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+ [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
+ [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
+ [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
+ [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
+ [91]  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108
+[109] 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
+[127] 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
+[145] 145 146 147 148 149 150</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co">#brief structure of iris</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a><span class="fu">str</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   150 obs. of  5 variables:
  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
@@ -809,12 +830,218 @@ UseMethod("mean")
 </div>
 </div>
 </section></section>
-<section id="iterationslooping" class="title-slide slide level1 center">
-<h1>Iterations/Looping</h1>
+<section>
+<section id="iteration" class="title-slide slide level1 center">
+<h1>Iteration</h1>
+
+</section>
+<section id="code-re-factoring" class="slide level2">
+<h2>Code re-factoring</h2>
+<div style="font-size:20px">
+<p>One advantage of coding is that it allows us to reduce repetition of a task. Assume you have a list with 4 elements, imagine you want to compute the median of each element of the list and add 2.</p>
+<p><strong>Never copy and pastes more than twice!</strong></p>
+</div>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">set.seed</span>(<span class="dv">56</span>)</span>
+<span id="cb62-2"><a href="#cb62-2"></a>list_df <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
+<span id="cb62-3"><a href="#cb62-3"></a>                <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
+<span id="cb62-4"><a href="#cb62-4"></a>                <span class="at">c =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
+<span id="cb62-5"><a href="#cb62-5"></a>                <span class="at">d =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>))</span>
+<span id="cb62-6"><a href="#cb62-6"></a></span>
+<span id="cb62-7"><a href="#cb62-7"></a><span class="co">#To compute the median </span></span>
+<span id="cb62-8"><a href="#cb62-8"></a><span class="co">#of each element and add 2</span></span>
+<span id="cb62-9"><a href="#cb62-9"></a><span class="fu">median</span>(list_df<span class="sc">$</span>a) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.126721</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>b) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.441144</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>c) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.606057</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>d) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.570735</code></pre>
+</div>
+</div>
+</div>
+<div style="font-size:25px">
+<p>In what ways could we reduce repetitions in the code above</p>
+<ol type="1">
+<li><p>Create a function that takes a vector, gets its median and adds 2.</p></li>
+<li><p>Use a for loop</p></li>
+</ol>
+</div>
+</section>
+<section id="reducing-repetitions" class="slide level2">
+<h2>Reducing repetitions</h2>
+<div style="font-size:25px">
+<p>Create a function that expects a numeric vector, get’s the median and adds two.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>median_plus_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb70-2"><a href="#cb70-2"></a>  <span class="fu">median</span>(x) <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb70-3"><a href="#cb70-3"></a>}</span>
+<span id="cb70-4"><a href="#cb70-4"></a></span>
+<span id="cb70-5"><a href="#cb70-5"></a><span class="co">#test the function</span></span>
+<span id="cb70-6"><a href="#cb70-6"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.126721</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.441144</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.606057</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.570735</code></pre>
+</div>
+</div>
+<div style="font-size:25px">
+<p>We still broke the rule of never copying and pasting more than twice. What other steps can we take ?</p>
+</div>
+</section>
+<section id="for-loop" class="slide level2">
+<h2>For loop</h2>
+<div style="font-size:25px">
+<p>We can use the for loop</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(list_df))  <span class="co"># 1. output</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(list_df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb78-3"><a href="#cb78-3"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">median_plus_two</span>(list_df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb78-4"><a href="#cb78-4"></a>}</span>
+<span id="cb78-5"><a href="#cb78-5"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.126721 2.441144 1.606057 1.570735</code></pre>
+</div>
+</div>
+<div style="font-size:25px">
+<p>Other improvements would be to turn the above code into a function that takes a dataframe</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>median_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb80-2"><a href="#cb80-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
+<span id="cb80-3"><a href="#cb80-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb80-4"><a href="#cb80-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">median_plus_two</span>(df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb80-5"><a href="#cb80-5"></a>}</span>
+<span id="cb80-6"><a href="#cb80-6"></a>output</span>
+<span id="cb80-7"><a href="#cb80-7"></a>}</span>
+<span id="cb80-8"><a href="#cb80-8"></a></span>
+<span id="cb80-9"><a href="#cb80-9"></a><span class="co"># a user now only has to use median_func</span></span>
+<span id="cb80-10"><a href="#cb80-10"></a><span class="fu">median_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.126721 2.441144 1.606057 1.570735</code></pre>
+</div>
+</div>
+</section>
+<section id="now-you-would-like-to-compute-other-summaries-mean-sd-max-etc" class="slide level2">
+<h2>Now you would like to compute other summaries: mean(), sd(), max() etc</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Mean</a></li><li><a href="#tabset-1-2">Standard deviation</a></li><li><a href="#tabset-1-3">Maximum</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>mean_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb82-2"><a href="#cb82-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
+<span id="cb82-3"><a href="#cb82-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb82-4"><a href="#cb82-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb82-5"><a href="#cb82-5"></a>}</span>
+<span id="cb82-6"><a href="#cb82-6"></a>output</span>
+<span id="cb82-7"><a href="#cb82-7"></a>}</span>
+<span id="cb82-8"><a href="#cb82-8"></a></span>
+<span id="cb82-9"><a href="#cb82-9"></a><span class="co"># a user now only has to use median_func</span></span>
+<span id="cb82-10"><a href="#cb82-10"></a><span class="fu">mean_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0.1365440  0.2305511 -0.1769054 -0.4934504</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a>sd_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb84-2"><a href="#cb84-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
+<span id="cb84-3"><a href="#cb84-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb84-4"><a href="#cb84-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">sd</span>(df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb84-5"><a href="#cb84-5"></a>}</span>
+<span id="cb84-6"><a href="#cb84-6"></a>output</span>
+<span id="cb84-7"><a href="#cb84-7"></a>}</span>
+<span id="cb84-8"><a href="#cb84-8"></a></span>
+<span id="cb84-9"><a href="#cb84-9"></a><span class="co"># a user now only has to use median_func</span></span>
+<span id="cb84-10"><a href="#cb84-10"></a><span class="fu">sd_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6347788 0.7751028 0.7312435 0.9495169</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a>max_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb86-2"><a href="#cb86-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
+<span id="cb86-3"><a href="#cb86-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb86-4"><a href="#cb86-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">max</span>(df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb86-5"><a href="#cb86-5"></a>}</span>
+<span id="cb86-6"><a href="#cb86-6"></a>output</span>
+<span id="cb86-7"><a href="#cb86-7"></a>}</span>
+<span id="cb86-8"><a href="#cb86-8"></a></span>
+<span id="cb86-9"><a href="#cb86-9"></a><span class="co"># a user now only has to use median_func</span></span>
+<span id="cb86-10"><a href="#cb86-10"></a><span class="fu">max_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.4889313 1.4065252 0.9884837 1.9172157</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="font-size:25px">
+<p>Oops! We have violated the the rule of copying and pasting 😅</p>
+</div>
+</section></section>
+<section>
+<section id="functionals" class="title-slide slide level1 center">
+<h1>Functionals</h1>
+
+</section>
+<section id="remember-that-a-function-can-be-passed-as-an-argument-in-r" class="slide level2">
+<h2>Remember that a function can be passed as an argument in R 🤩</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1"></a>summary_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df, fun) {</span>
+<span id="cb88-2"><a href="#cb88-2"></a>  out <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))</span>
+<span id="cb88-3"><a href="#cb88-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {</span>
+<span id="cb88-4"><a href="#cb88-4"></a>    out[i] <span class="ot">&lt;-</span> <span class="fu">fun</span>(df[[i]])</span>
+<span id="cb88-5"><a href="#cb88-5"></a>  }</span>
+<span id="cb88-6"><a href="#cb88-6"></a>  out</span>
+<span id="cb88-7"><a href="#cb88-7"></a>}</span>
+<span id="cb88-8"><a href="#cb88-8"></a></span>
+<span id="cb88-9"><a href="#cb88-9"></a><span class="fu">summary_fun</span>(list_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0.1365440  0.2305511 -0.1769054 -0.4934504</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a><span class="fu">summary_fun</span>(list_df, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6347788 0.7751028 0.7312435 0.9495169</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a><span class="fu">summary_fun</span>(list_df, max)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.4889313 1.4065252 0.9884837 1.9172157</code></pre>
+</div>
+</div>
+<div style="font-size:25px">
+<p>The idea of passing a function to another function is an extremely powerful idea, that makes R a functional programming language 👌🏽</p>
+</div>
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

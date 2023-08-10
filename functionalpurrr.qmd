@@ -1,7 +1,7 @@
 ---
 title: "Functional Programming with Purrr"
 subtitle: "FCT Abuja UseR Group, Nigeria"
-institute: "Postdoc Research Fellow"
+institute: "Postdoctoral Research Fellow"
 date: "16 August 2023"
 author: "McEwen Khundi, PhD"
 format: revealjs
@@ -250,6 +250,8 @@ Vectors are of two main types in R: atomic vectors and lists.
 
 3.  Factors, dates, data frames and tibbles are made from atomic or lists by adding attributes
 
+    [R for Data Science: Vectors](https://r4ds.had.co.nz/vectors.html)
+
 ## Example vectors
 
 ::: columns
@@ -327,7 +329,7 @@ y["b"]
 :::
 :::
 
-## Dimensions attribute 
+## Dimension attribute
 
 Another common and important attribute of vectors is the dimensions.
 
@@ -352,7 +354,9 @@ z
 ```
 :::
 :::
+
 ## Dataframes and tibbles
+
 ::: {style="font-size:30px"}
 Dataframes/tibbles and tibbles store our datasets in R memory. These are built on top of lists.
 
@@ -371,8 +375,195 @@ typeof(iris)
 #dimensions
 dim(iris)
 
+#all the attributes
+attributes(iris)
+
 #brief structure of iris
 str(iris)
 
 ```
-# Iterations/Looping
+
+# Iteration
+
+## Code re-factoring
+
+::: {style="font-size:20px"}
+One advantage of coding is that it allows us to reduce repetition of a task. Assume you have a list with 4 elements, imagine you want to compute the median of each element of the list and add 2.
+
+**Never copy and pastes more than twice!**
+:::
+
+```{r}
+#| echo: true
+#| output-location: column
+
+set.seed(56)
+list_df <- list(a = rnorm(12), 
+                b = rnorm(12), 
+                c = rnorm(12), 
+                d = rnorm(12))
+
+#To compute the median 
+#of each element and add 2
+median(list_df$a) + 2
+median(list_df$b) + 2
+median(list_df$c) + 2
+median(list_df$d) + 2
+```
+
+::: {style="font-size:25px"}
+In what ways could we reduce repetitions in the code above
+
+1.  Create a function that takes a vector, gets its median and adds 2.
+
+2.  Use a for loop
+:::
+
+## Reducing repetitions
+
+::: {style="font-size:25px"}
+Create a function that expects a numeric vector, get's the median and adds two.
+:::
+
+```{r}
+#| echo: true
+median_plus_two <- function(x){
+  median(x) + 2
+}
+
+#test the function
+median_plus_two(list_df$a)
+median_plus_two(list_df$b)
+median_plus_two(list_df$c)
+median_plus_two(list_df$d)
+
+```
+
+::: {style="font-size:25px"}
+We still broke the rule of never copying and pasting more than twice. What other steps can we take ?
+:::
+
+## For loop
+
+::: {style="font-size:25px"}
+We can use the for loop
+:::
+
+```{r}
+#| echo: true
+
+output <- vector("double", length(list_df))  # 1. output
+for (i in seq_along(list_df)) {            # 2. sequence
+  output[[i]] <- median_plus_two(list_df[[i]])      # 3. body
+}
+output
+
+```
+
+::: {style="font-size:25px"}
+Other improvements would be to turn the above code into a function that takes a dataframe
+:::
+
+```{r}
+#| echo: true
+
+median_fun <- function(df){
+  output <- vector("double", length(df))  # 1. output
+for (i in seq_along(df)) {            # 2. sequence
+  output[[i]] <- median_plus_two(df[[i]])      # 3. body
+}
+output
+}
+
+# a user now only has to use median_func
+median_fun(list_df)
+```
+
+## Now you would like to compute other summaries: mean(), sd(), max() etc
+
+::: panel-tabset
+## Mean
+
+```{r}
+#| echo: true
+
+mean_fun <- function(df){
+  output <- vector("double", length(df))  # 1. output
+for (i in seq_along(df)) {            # 2. sequence
+  output[[i]] <- mean(df[[i]])      # 3. body
+}
+output
+}
+
+# a user now only has to use median_func
+mean_fun(list_df)
+```
+
+## Standard deviation
+
+```{r}
+#| echo: true
+
+sd_fun <- function(df){
+  output <- vector("double", length(df))  # 1. output
+for (i in seq_along(df)) {            # 2. sequence
+  output[[i]] <- sd(df[[i]])      # 3. body
+}
+output
+}
+
+# a user now only has to use median_func
+sd_fun(list_df)
+```
+
+## Maximum
+
+```{r}
+#| echo: true
+
+max_fun <- function(df){
+  output <- vector("double", length(df))  # 1. output
+for (i in seq_along(df)) {            # 2. sequence
+  output[[i]] <- max(df[[i]])      # 3. body
+}
+output
+}
+
+# a user now only has to use median_func
+max_fun(list_df)
+```
+:::
+
+::: {style="font-size:25px"}
+Oops! We have violated the the rule of copying and pasting 😅
+:::
+
+# Functionals
+
+## Remember that a function can be passed as an argument in R 🤩
+
+```{r}
+#| echo: true
+
+summary_fun <- function(df, fun) {
+  out <- vector("double", length(df))
+  for (i in seq_along(df)) {
+    out[i] <- fun(df[[i]])
+  }
+  out
+}
+
+summary_fun(list_df, mean)
+summary_fun(list_df, sd)
+summary_fun(list_df, max)
+```
+
+::: {style="font-size:25px"}
+The idea of passing a function to another function is an extremely powerful idea, that makes R a functional programming language 👌🏽
+:::
+
+Can change the above function to accept data.frames
+
+introduce the map functions and different versions of maps, use it on a data frame
+
+idea of anonymous functions
