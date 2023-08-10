@@ -1,0 +1,378 @@
+---
+title: "Functional Programming with Purrr"
+subtitle: "FCT Abuja UseR Group, Nigeria"
+institute: "Postdoc Research Fellow"
+date: "16 August 2023"
+author: "McEwen Khundi, PhD"
+format: revealjs
+editor: visual
+slide-number: true
+css: styles.css
+---
+
+## What is a functional programming language
+
+Functional languages have first-class functions, functions that behave like any other data structure. In R, this means that you can do many of the things with a function that you can do with a vector: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
+
+[Advanced R: Functional programming](https://adv-r.hadley.nz/fp.html#functional-programming-languages)
+
+**The purrr R package provides a convenient toolkit for doing functional programming in R**
+
+[Purrr R package overview page](https://purrr.tidyverse.org/#overview)
+
+# Functions
+
+## Creating functions in R
+
+Functions in R are created by using the keyword function as in the example below
+
+`tripple_func <- function(x) {`
+
+`x*3`
+
+`}`
+
+A function is made up of arguments, (the text between the parentheses), and the body (the text between the curly brackets).
+
+The last line to be executed is returned
+
+```{r}
+tripple_func <- function(x){
+  x*3
+}
+```
+
+```{r, echo=TRUE}
+tripple_func(2)
+```
+
+## Arguments
+
+Arguments are like variables that we pass to functions when we "call" the function. A function can have no arguments or have many arguments.
+
+::: columns
+::: {.column width="50%"}
+A function with zero arguments
+
+```{r}
+#| code-line-numbers: "|2"
+#| echo: true
+
+my_func <- function(){
+  3
+}
+my_func()
+
+```
+:::
+
+::: {.column width="50%"}
+A function that accepts two arguments
+
+```{r}
+#| code-line-numbers: "|2"
+#| echo: true
+
+add_two_numbers <- function(x, y){
+  x + y
+}
+
+add_two_numbers(x = 3, y = 2)
+
+```
+:::
+:::
+
+## Any number of arguments:
+
+Can accept any number of arguments by using the ... in its parenthesis. In R this is often used to pass arguments that are passed to other function
+
+```{r}
+#| code-line-numbers: "|2"
+#| echo: true
+
+add_numbers <- function(..., allowmissing = TRUE){
+  sum(..., na.rm = allowmissing)
+}
+
+add_numbers(1,2,3,4,NA)
+```
+
+## Argument/variable scoping
+
+Scoping is how R finds the value of the variables/arguments in functions etc.
+
+::: columns
+::: {.column width="50%"}
+::: {style="font-size:20px"}
+Variables that are defined within the function take precedence
+:::
+
+```{r}
+#| echo: true
+#| code-line-numbers: "2"
+x <- 10; y <- 20
+g02 <- function(){
+  x <- 1
+  y <- 2
+  c(x, y)
+}
+
+#x and y from the function
+g02()
+```
+:::
+
+::: {.column width="50%"}
+::: {style="font-size:20px"}
+But if a variable is not defined inside a function R looks one level up
+:::
+
+```{r}
+#| echo: true
+#| code-line-numbers: "2"
+x <- 2
+
+g03 <- function() {
+  y <- 1
+  c(x, y)
+}
+g03()
+```
+:::
+:::
+
+## Default arguments
+
+R functions allow one to provide default arguments at function creation, this entails that the function can be used without specifying the value of the argument at function call
+
+::: columns
+::: {.column width="50%"}
+::: {style="font-size:20px"}
+If the argument with default value is not assigned a value at call, the default value is used
+:::
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1"
+
+my_func <- function(x, y=3) {
+
+x + y
+
+}
+
+my_func(x = 4)
+```
+:::
+
+::: {.column width="50%"}
+::: {style="font-size:20px"}
+You can also provide a different value for y, this will override the default value
+:::
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1"
+my_func(x = 4, y = 5)
+```
+:::
+:::
+
+## R functions passed as values of arguments to other functions
+
+In R, functions can be passed to other functions, this is possible because in functions behave just like variables.
+
+```{r}
+#| echo: true
+
+summarise_func <- function(values, fn){
+  fn(values)
+}
+
+summarise_func(1:8, mean)
+summarise_func(1:8, sum)
+```
+
+::: {style="font-size:20px"}
+Note that, the functions should be passed without parenthesis. Including the parenthesis would force the function to be evaluated first before being passed
+:::
+
+## Inspecting the arguments and body of a function in memory
+
+::: columns
+::: {.column width="50%"}
+::: {style="font-size:20px"}
+You can inspect a function's arguments and body by typing the functions name
+:::
+
+```{r}
+#| echo: true
+
+my_func
+```
+:::
+
+::: {.column width="50%"}
+::: {style="font-size:20px"}
+Functions that have "UseMethod" or Primitive in their description do not display a lot of information
+:::
+
+```{r}
+#| echo: true
+
+#primitive functions
+sum
+#generic functions
+mean
+
+```
+:::
+:::
+
+# Vectors
+
+## Types of vectors
+
+Vectors are of two main types in R: atomic vectors and lists.
+
+1.  For atomic vectors all elements must have the same type
+
+    -   logical (TRUE, FALSE)
+
+    -   Integer
+
+    -   Double
+
+    -   Character
+
+2.  In lists elements can be of different types
+
+3.  Factors, dates, data frames and tibbles are made from atomic or lists by adding attributes
+
+## Example vectors
+
+::: columns
+::: {.column width="50%"}
+Atomic vectors
+
+```{r}
+#| echo: true
+lgl_var <- c(TRUE, FALSE)
+lgl_var
+int_var <- c(1L, 6L, 10L)
+int_var
+dbl_var <- c(1, 2.5, 4.5)
+dbl_var
+chr_var <- c("these are", "some strings")
+chr_var
+
+```
+:::
+
+::: {.column width="50%"}
+::: {style="font-size:30px"}
+Lists can store different types of elements including other lists
+:::
+
+```{r}
+#| echo: true
+list_vect <- list(1, c(2,4), 
+                  int_var, 
+                  dbl_var,
+                  list(5,7))
+list_vect
+```
+:::
+:::
+
+## Adding attributes to vectors (names)
+
+::: {style="font-size:40px"}
+You can add attributes to a vector elements such as names
+:::
+
+::: columns
+::: {.column width="50%"}
+::: {style="font-size:30px"}
+A vector can be named in three ways
+:::
+
+```{r}
+#| echo: true
+#When creating it
+x <- c(a = 1, b = 2, c = 3)
+x
+
+#After creation
+y <- c(1, 2, 3)
+names(y) <- c("a", "b", "c")
+y
+```
+:::
+
+::: {.column width="50%"}
+::: {style="font-size:30px"}
+Elements of a vector can be accessed by position or names
+:::
+
+```{r}
+#| echo: true
+#by position
+y[2]
+
+#by the elements name
+y["b"]
+```
+:::
+:::
+
+## Dimensions attribute 
+
+Another common and important attribute of vectors is the dimensions.
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+
+z <- 1:6
+z
+dim(z) <- c(3,2)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#dimensions 
+dim(z)
+#z with dimentions
+z
+```
+:::
+:::
+## Dataframes and tibbles
+::: {style="font-size:30px"}
+Dataframes/tibbles and tibbles store our datasets in R memory. These are built on top of lists.
+
+It is a named list, with a constraint that each item is a vector and that each of the items have the same length.
+:::
+
+```{r}
+#| echo: true
+
+#Class
+class(iris)
+
+#Underlying vector
+typeof(iris)
+
+#dimensions
+dim(iris)
+
+#brief structure of iris
+str(iris)
+
+```
+# Iterations/Looping
