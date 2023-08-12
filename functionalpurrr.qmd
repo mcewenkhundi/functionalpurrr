@@ -7,12 +7,11 @@ author: "McEwen Khundi, PhD"
 format: revealjs
 editor: visual
 slide-number: true
-css: styles.css
 ---
 
 ## What is a functional programming language
 
-Functional languages have first-class functions, functions that behave like any other data structure. In R, this means that you can do many of the things with a function that you can do with a vector: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
+In R, this means that you can do many of the things with a function that you can do with a vector: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
 
 [Advanced R: Functional programming](https://adv-r.hadley.nz/fp.html#functional-programming-languages)
 
@@ -24,7 +23,7 @@ Functional languages have first-class functions, functions that behave like any 
 
 ## Creating functions in R
 
-Functions in R are created by using the keyword function as in the example below
+Functions in R are created by using the keyword function as in the example below:
 
 `tripple_func <- function(x) {`
 
@@ -51,7 +50,7 @@ tripple_func(2)
 Arguments are like variables that we pass to functions when we "call" the function. A function can have no arguments or have many arguments.
 
 ::: columns
-::: {.column width="50%"}
+::: {.column width="40%"}
 A function with zero arguments
 
 ```{r}
@@ -66,7 +65,7 @@ my_func()
 ```
 :::
 
-::: {.column width="50%"}
+::: {.column width="60%"}
 A function that accepts two arguments
 
 ```{r}
@@ -181,7 +180,7 @@ my_func(x = 4, y = 5)
 
 ## R functions passed as values of arguments to other functions
 
-In R, functions can be passed to other functions, this is possible because in functions behave just like variables.
+In R, functions can be passed to other functions, this is possible because in R, functions behave just like variables.
 
 ```{r}
 #| echo: true
@@ -357,28 +356,25 @@ z
 
 ## Dataframes and tibbles
 
-::: {style="font-size:30px"}
-Dataframes/tibbles and tibbles store our datasets in R memory. These are built on top of lists.
+::: {style="font-size:20px"}
+Dataframes/tibbles are built on top of lists.
 
-It is a named list, with a constraint that each item is a vector and that each of the items have the same length.
+They are made of a named list, with a constraint that each item is a vector and that each of the items have the same length.
 :::
 
 ```{r}
 #| echo: true
-
-#Class
-class(iris)
-
-#Underlying vector
-typeof(iris)
-
-#dimensions
-dim(iris)
-
+#The iris dataset is part of R
 #all the attributes
 attributes(iris)
 
-#brief structure of iris
+```
+
+## Structure of the iris dataset
+
+```{r}
+#| echo: true
+
 str(iris)
 
 ```
@@ -562,8 +558,248 @@ summary_fun(list_df, max)
 The idea of passing a function to another function is an extremely powerful idea, that makes R a functional programming language 👌🏽
 :::
 
-Can change the above function to accept data.frames
+::: {style="font-size:25px"}
+Can change the above function to accept data.frames ✌️
+:::
 
-introduce the map functions and different versions of maps, use it on a data frame
+## Purrr::map()
 
-idea of anonymous functions
+The purrr r package provides functions that aid making iteration code succinct by avoiding the explicit use of for loops
+
+The **map( )** function is similar to the **summary_fun( )** that we have just seen on the previous slide. But **map( )**, is written in C, can take any number of arguments and supports use of short functions (anonymous functions)
+
+```{r}
+#| echo: true
+
+#Purrr package is part of the tidyverse
+library(tidyverse)
+
+```
+
+## Map function
+
+The function map, takes as argument the vector (data) you want to iterate over and a function that you wan to to evaluate on each item of the input.
+
+::: columns
+::: {.column width="40%"}
+![(image from Advanced-R, CC-BY-NC-SA 4.0)](images/Screenshot%202023-08-12%20at%209.45.08%20AM.png)
+:::
+
+::: {.column width="60%"}
+```{r}
+#| echo: true
+
+results_mean_list <- map(list_df, mean)
+results_mean_list
+
+```
+:::
+:::
+
+## Variants of map for specific output
+
+::: {style="font-size:30px"}
+Most times it is much better for map to return a simpler vector than a list type
+
+-   map_lgl(), logical vector
+
+-   map_int(), integer vector
+
+-   map_dbl(), double vector
+
+-   map_chr(), character vector
+:::
+
+```{r}
+#| echo: true
+
+#get a vector of numerical values
+map_dbl(list_df, mean)
+
+#get a vector of character values
+map_chr(list_df, class)
+```
+
+## Anonymous functions
+
+::: {style="font-size:30px"}
+Remember the median_plus_two function
+:::
+
+```{r}
+#| echo: true
+median_plus_two
+```
+
+::: {style="font-size:30px"}
+When a function is short as this, you can create an anonymous function within map
+:::
+
+```{r}
+#| echo: true
+
+map_dbl(list_df, function(x){ median(x) + 2})
+```
+
+::: {style="font-size:30px"}
+Starting with R 4.10, R now has a shortcut for anonymoous functions
+:::
+
+```{r}
+#| echo: true
+
+map_dbl(list_df, \(x){ median(x) + 2})
+```
+
+## Passing arguments to function in map
+
+::: {style="font-size:30px"}
+How to pass arguments to a function that expects more than one argument
+:::
+
+::: columns
+::: {.column width="40%"}
+![(image from Advanced-R, CC-BY-SA 4.0)](images/Screenshot%202023-08-12%20at%2010.48.18%20AM.png)
+:::
+
+::: {.column width="60%"}
+```{r}
+#| echo: true
+
+median_add_num <- function(x, y){
+  median(x) + y
+}
+
+#Add 4 to the median of each element
+map_dbl(list_df, median_add_num, 4)
+
+#It is good practice to specify
+#the argument name
+map_dbl(list_df, median_add_num, y = 4)
+```
+:::
+:::
+
+## Using map with dataframes
+
+::: {style="font-size:30px"}
+Using map with dataframes will run the function against each column (variable).
+
+Note: a dataframe is a list underneath
+:::
+
+::: columns
+::: {.column width="60%"}
+```{r}
+#| echo: true
+
+#check
+class(list_df)
+
+#convert the list_df to a dataframe/tibble
+tibble_df <- as_tibble(list_df)
+
+#check the new class
+class(tibble_df)
+
+tibble_df
+
+```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| echo: true
+
+#mean of each column
+map_dbl(tibble_df, mean)
+
+#class of each column
+map_chr(tibble_df, class)
+```
+:::
+:::
+
+## The penguis dataset
+
+[To read more about the palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+
+```{r}
+#| echo: true
+#install.packages("palmerpenguins")
+
+library(palmerpenguins)
+data(package = 'palmerpenguins')
+
+#explore the dataset
+head(penguins)
+```
+
+## Calculate some summaries for each column of the penguins dataset
+
+```{r}
+#| echo: true
+
+#class of each column
+penguins %>%
+  map_chr(class)
+
+#Number of unique values in each column
+penguins |>
+  map(unique) |>
+  map_dbl(length)
+
+```
+
+## Conditional map
+
+Since penguins dataset has other non-numeric variables, we need a conditional map 😅
+
+```{r}
+#| echo: true
+
+map_if(penguins, is.numeric, mean, na.rm = T)
+
+```
+
+## Note dplyr has better options for achieving the previous map use
+
+```{r}
+#| echo: true
+penguins |>
+  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+
+#Can also do it by species of penguis
+penguins |>
+  group_by(species) |>
+  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+
+
+```
+
+## Example of reading multiple files 
+
+Imagine that each of the species of penguin are in a separate csv file present in the data folder
+
+```{r}
+#| echo: true
+
+dir("data")
+
+files <- dir("data")
+
+#Read in the separate species of penquis
+map(here::here("data",files), read_csv)
+```
+
+## Dataframe variant of map
+
+The output of map is a list, in this case all the files are of the same structure, we might want to turn this into a single data frame.
+
+map_dfr function returns a dataframe by binding all rows
+
+```{r}
+#| echo: true
+
+map_dfr(here::here("data",files), read_csv)
+```

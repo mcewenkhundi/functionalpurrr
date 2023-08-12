@@ -97,7 +97,6 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="functionalpurrr_files/libs/revealjs/dist/theme/quarto.css">
-  <link rel="stylesheet" href="styles.css">
   <link href="functionalpurrr_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="functionalpurrr_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="functionalpurrr_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -410,7 +409,7 @@ McEwen Khundi, PhD
 </section>
 <section id="what-is-a-functional-programming-language" class="slide level2">
 <h2>What is a functional programming language</h2>
-<p>Functional languages have first-class functions, functions that behave like any other data structure. In R, this means that you can do many of the things with a function that you can do with a vector: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.</p>
+<p>In R, this means that you can do many of the things with a function that you can do with a vector: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.</p>
 <p><a href="https://adv-r.hadley.nz/fp.html#functional-programming-languages">Advanced R: Functional programming</a></p>
 <p><strong>The purrr R package provides a convenient toolkit for doing functional programming in R</strong></p>
 <p><a href="https://purrr.tidyverse.org/#overview">Purrr R package overview page</a></p>
@@ -422,7 +421,7 @@ McEwen Khundi, PhD
 </section>
 <section id="creating-functions-in-r" class="slide level2">
 <h2>Creating functions in R</h2>
-<p>Functions in R are created by using the keyword function as in the example below</p>
+<p>Functions in R are created by using the keyword function as in the example below:</p>
 <p><code>tripple_func &lt;- function(x) {</code></p>
 <p><code>x*3</code></p>
 <p><code>}</code></p>
@@ -439,7 +438,7 @@ McEwen Khundi, PhD
 <h2>Arguments</h2>
 <p>Arguments are like variables that we pass to functions when we “call” the function. A function can have no arguments or have many arguments.</p>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:40%;">
 <p>A function with zero arguments</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>my_func <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
@@ -450,7 +449,7 @@ McEwen Khundi, PhD
 <pre><code>[1] 3</code></pre>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:60%;">
 <p>A function that accepts two arguments</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>add_two_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
@@ -555,7 +554,7 @@ McEwen Khundi, PhD
 </section>
 <section id="r-functions-passed-as-values-of-arguments-to-other-functions" class="slide level2">
 <h2>R functions passed as values of arguments to other functions</h2>
-<p>In R, functions can be passed to other functions, this is possible because in functions behave just like variables.</p>
+<p>In R, functions can be passed to other functions, this is possible because in R, functions behave just like variables.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>summarise_func <span class="ot">&lt;-</span> <span class="cf">function</span>(values, fn){</span>
 <span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">fn</span>(values)</span>
@@ -589,7 +588,7 @@ McEwen Khundi, PhD
 x + y
 
 }
-&lt;bytecode: 0x7f7f6b702198&gt;</code></pre>
+&lt;bytecode: 0x7fdea49f8680&gt;</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -607,7 +606,7 @@ x + y
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x7f7f9af59c28&gt;
+&lt;bytecode: 0x7fdea369c710&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -778,28 +777,14 @@ UseMethod("mean")
 </section>
 <section id="dataframes-and-tibbles" class="slide level2">
 <h2>Dataframes and tibbles</h2>
-<div style="font-size:30px">
-<p>Dataframes/tibbles and tibbles store our datasets in R memory. These are built on top of lists.</p>
-<p>It is a named list, with a constraint that each item is a vector and that each of the items have the same length.</p>
+<div style="font-size:20px">
+<p>Dataframes/tibbles are built on top of lists.</p>
+<p>They are made of a named list, with a constraint that each item is a vector and that each of the items have the same length.</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co">#Class</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="fu">class</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "data.frame"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co">#Underlying vector</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a><span class="fu">typeof</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "list"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="co">#dimensions</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a><span class="fu">dim</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 150   5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co">#all the attributes</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a><span class="fu">attributes</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co">#The iris dataset is part of R</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="co">#all the attributes</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a><span class="fu">attributes</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$names
 [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     
@@ -818,8 +803,12 @@ $row.names
 [127] 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
 [145] 145 146 147 148 149 150</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co">#brief structure of iris</span></span>
-<span id="cb60-2"><a href="#cb60-2"></a><span class="fu">str</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="structure-of-the-iris-dataset" class="slide level2">
+<h2>Structure of the iris dataset</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">str</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   150 obs. of  5 variables:
  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
@@ -843,28 +832,28 @@ $row.names
 </div>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">set.seed</span>(<span class="dv">56</span>)</span>
-<span id="cb62-2"><a href="#cb62-2"></a>list_df <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
-<span id="cb62-3"><a href="#cb62-3"></a>                <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
-<span id="cb62-4"><a href="#cb62-4"></a>                <span class="at">c =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
-<span id="cb62-5"><a href="#cb62-5"></a>                <span class="at">d =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>))</span>
-<span id="cb62-6"><a href="#cb62-6"></a></span>
-<span id="cb62-7"><a href="#cb62-7"></a><span class="co">#To compute the median </span></span>
-<span id="cb62-8"><a href="#cb62-8"></a><span class="co">#of each element and add 2</span></span>
-<span id="cb62-9"><a href="#cb62-9"></a><span class="fu">median</span>(list_df<span class="sc">$</span>a) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">set.seed</span>(<span class="dv">56</span>)</span>
+<span id="cb56-2"><a href="#cb56-2"></a>list_df <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
+<span id="cb56-3"><a href="#cb56-3"></a>                <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
+<span id="cb56-4"><a href="#cb56-4"></a>                <span class="at">c =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>), </span>
+<span id="cb56-5"><a href="#cb56-5"></a>                <span class="at">d =</span> <span class="fu">rnorm</span>(<span class="dv">12</span>))</span>
+<span id="cb56-6"><a href="#cb56-6"></a></span>
+<span id="cb56-7"><a href="#cb56-7"></a><span class="co">#To compute the median </span></span>
+<span id="cb56-8"><a href="#cb56-8"></a><span class="co">#of each element and add 2</span></span>
+<span id="cb56-9"><a href="#cb56-9"></a><span class="fu">median</span>(list_df<span class="sc">$</span>a) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.126721</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>b) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>b) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.441144</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>c) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>c) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.606057</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>d) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">median</span>(list_df<span class="sc">$</span>d) <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.570735</code></pre>
 </div>
@@ -884,24 +873,24 @@ $row.names
 <p>Create a function that expects a numeric vector, get’s the median and adds two.</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>median_plus_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb70-2"><a href="#cb70-2"></a>  <span class="fu">median</span>(x) <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb70-3"><a href="#cb70-3"></a>}</span>
-<span id="cb70-4"><a href="#cb70-4"></a></span>
-<span id="cb70-5"><a href="#cb70-5"></a><span class="co">#test the function</span></span>
-<span id="cb70-6"><a href="#cb70-6"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>median_plus_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb64-2"><a href="#cb64-2"></a>  <span class="fu">median</span>(x) <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb64-3"><a href="#cb64-3"></a>}</span>
+<span id="cb64-4"><a href="#cb64-4"></a></span>
+<span id="cb64-5"><a href="#cb64-5"></a><span class="co">#test the function</span></span>
+<span id="cb64-6"><a href="#cb64-6"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.126721</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.441144</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.606057</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">median_plus_two</span>(list_df<span class="sc">$</span>d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.570735</code></pre>
 </div>
@@ -916,11 +905,11 @@ $row.names
 <p>We can use the for loop</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(list_df))  <span class="co"># 1. output</span></span>
-<span id="cb78-2"><a href="#cb78-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(list_df)) {            <span class="co"># 2. sequence</span></span>
-<span id="cb78-3"><a href="#cb78-3"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">median_plus_two</span>(list_df[[i]])      <span class="co"># 3. body</span></span>
-<span id="cb78-4"><a href="#cb78-4"></a>}</span>
-<span id="cb78-5"><a href="#cb78-5"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(list_df))  <span class="co"># 1. output</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(list_df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb72-3"><a href="#cb72-3"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">median_plus_two</span>(list_df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb72-4"><a href="#cb72-4"></a>}</span>
+<span id="cb72-5"><a href="#cb72-5"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.126721 2.441144 1.606057 1.570735</code></pre>
 </div>
@@ -929,16 +918,16 @@ $row.names
 <p>Other improvements would be to turn the above code into a function that takes a dataframe</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>median_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
-<span id="cb80-2"><a href="#cb80-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
-<span id="cb80-3"><a href="#cb80-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
-<span id="cb80-4"><a href="#cb80-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">median_plus_two</span>(df[[i]])      <span class="co"># 3. body</span></span>
-<span id="cb80-5"><a href="#cb80-5"></a>}</span>
-<span id="cb80-6"><a href="#cb80-6"></a>output</span>
-<span id="cb80-7"><a href="#cb80-7"></a>}</span>
-<span id="cb80-8"><a href="#cb80-8"></a></span>
-<span id="cb80-9"><a href="#cb80-9"></a><span class="co"># a user now only has to use median_func</span></span>
-<span id="cb80-10"><a href="#cb80-10"></a><span class="fu">median_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>median_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb74-2"><a href="#cb74-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
+<span id="cb74-3"><a href="#cb74-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb74-4"><a href="#cb74-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">median_plus_two</span>(df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb74-5"><a href="#cb74-5"></a>}</span>
+<span id="cb74-6"><a href="#cb74-6"></a>output</span>
+<span id="cb74-7"><a href="#cb74-7"></a>}</span>
+<span id="cb74-8"><a href="#cb74-8"></a></span>
+<span id="cb74-9"><a href="#cb74-9"></a><span class="co"># a user now only has to use median_func</span></span>
+<span id="cb74-10"><a href="#cb74-10"></a><span class="fu">median_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.126721 2.441144 1.606057 1.570735</code></pre>
 </div>
@@ -951,16 +940,16 @@ $row.names
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>mean_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
-<span id="cb82-2"><a href="#cb82-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
-<span id="cb82-3"><a href="#cb82-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
-<span id="cb82-4"><a href="#cb82-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(df[[i]])      <span class="co"># 3. body</span></span>
-<span id="cb82-5"><a href="#cb82-5"></a>}</span>
-<span id="cb82-6"><a href="#cb82-6"></a>output</span>
-<span id="cb82-7"><a href="#cb82-7"></a>}</span>
-<span id="cb82-8"><a href="#cb82-8"></a></span>
-<span id="cb82-9"><a href="#cb82-9"></a><span class="co"># a user now only has to use median_func</span></span>
-<span id="cb82-10"><a href="#cb82-10"></a><span class="fu">mean_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>mean_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb76-2"><a href="#cb76-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
+<span id="cb76-3"><a href="#cb76-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb76-4"><a href="#cb76-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb76-5"><a href="#cb76-5"></a>}</span>
+<span id="cb76-6"><a href="#cb76-6"></a>output</span>
+<span id="cb76-7"><a href="#cb76-7"></a>}</span>
+<span id="cb76-8"><a href="#cb76-8"></a></span>
+<span id="cb76-9"><a href="#cb76-9"></a><span class="co"># a user now only has to use median_func</span></span>
+<span id="cb76-10"><a href="#cb76-10"></a><span class="fu">mean_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  0.1365440  0.2305511 -0.1769054 -0.4934504</code></pre>
 </div>
@@ -968,16 +957,16 @@ $row.names
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a>sd_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
-<span id="cb84-2"><a href="#cb84-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
-<span id="cb84-3"><a href="#cb84-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
-<span id="cb84-4"><a href="#cb84-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">sd</span>(df[[i]])      <span class="co"># 3. body</span></span>
-<span id="cb84-5"><a href="#cb84-5"></a>}</span>
-<span id="cb84-6"><a href="#cb84-6"></a>output</span>
-<span id="cb84-7"><a href="#cb84-7"></a>}</span>
-<span id="cb84-8"><a href="#cb84-8"></a></span>
-<span id="cb84-9"><a href="#cb84-9"></a><span class="co"># a user now only has to use median_func</span></span>
-<span id="cb84-10"><a href="#cb84-10"></a><span class="fu">sd_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a>sd_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb78-2"><a href="#cb78-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
+<span id="cb78-3"><a href="#cb78-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb78-4"><a href="#cb78-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">sd</span>(df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb78-5"><a href="#cb78-5"></a>}</span>
+<span id="cb78-6"><a href="#cb78-6"></a>output</span>
+<span id="cb78-7"><a href="#cb78-7"></a>}</span>
+<span id="cb78-8"><a href="#cb78-8"></a></span>
+<span id="cb78-9"><a href="#cb78-9"></a><span class="co"># a user now only has to use median_func</span></span>
+<span id="cb78-10"><a href="#cb78-10"></a><span class="fu">sd_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6347788 0.7751028 0.7312435 0.9495169</code></pre>
 </div>
@@ -985,16 +974,16 @@ $row.names
 </div>
 <div id="tabset-1-3">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a>max_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
-<span id="cb86-2"><a href="#cb86-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
-<span id="cb86-3"><a href="#cb86-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
-<span id="cb86-4"><a href="#cb86-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">max</span>(df[[i]])      <span class="co"># 3. body</span></span>
-<span id="cb86-5"><a href="#cb86-5"></a>}</span>
-<span id="cb86-6"><a href="#cb86-6"></a>output</span>
-<span id="cb86-7"><a href="#cb86-7"></a>}</span>
-<span id="cb86-8"><a href="#cb86-8"></a></span>
-<span id="cb86-9"><a href="#cb86-9"></a><span class="co"># a user now only has to use median_func</span></span>
-<span id="cb86-10"><a href="#cb86-10"></a><span class="fu">max_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>max_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb80-2"><a href="#cb80-2"></a>  output <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))  <span class="co"># 1. output</span></span>
+<span id="cb80-3"><a href="#cb80-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {            <span class="co"># 2. sequence</span></span>
+<span id="cb80-4"><a href="#cb80-4"></a>  output[[i]] <span class="ot">&lt;-</span> <span class="fu">max</span>(df[[i]])      <span class="co"># 3. body</span></span>
+<span id="cb80-5"><a href="#cb80-5"></a>}</span>
+<span id="cb80-6"><a href="#cb80-6"></a>output</span>
+<span id="cb80-7"><a href="#cb80-7"></a>}</span>
+<span id="cb80-8"><a href="#cb80-8"></a></span>
+<span id="cb80-9"><a href="#cb80-9"></a><span class="co"># a user now only has to use median_func</span></span>
+<span id="cb80-10"><a href="#cb80-10"></a><span class="fu">max_fun</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.4889313 1.4065252 0.9884837 1.9172157</code></pre>
 </div>
@@ -1014,29 +1003,561 @@ $row.names
 <section id="remember-that-a-function-can-be-passed-as-an-argument-in-r" class="slide level2">
 <h2>Remember that a function can be passed as an argument in R 🤩</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1"></a>summary_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df, fun) {</span>
-<span id="cb88-2"><a href="#cb88-2"></a>  out <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))</span>
-<span id="cb88-3"><a href="#cb88-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {</span>
-<span id="cb88-4"><a href="#cb88-4"></a>    out[i] <span class="ot">&lt;-</span> <span class="fu">fun</span>(df[[i]])</span>
-<span id="cb88-5"><a href="#cb88-5"></a>  }</span>
-<span id="cb88-6"><a href="#cb88-6"></a>  out</span>
-<span id="cb88-7"><a href="#cb88-7"></a>}</span>
-<span id="cb88-8"><a href="#cb88-8"></a></span>
-<span id="cb88-9"><a href="#cb88-9"></a><span class="fu">summary_fun</span>(list_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>summary_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df, fun) {</span>
+<span id="cb82-2"><a href="#cb82-2"></a>  out <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"double"</span>, <span class="fu">length</span>(df))</span>
+<span id="cb82-3"><a href="#cb82-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df)) {</span>
+<span id="cb82-4"><a href="#cb82-4"></a>    out[i] <span class="ot">&lt;-</span> <span class="fu">fun</span>(df[[i]])</span>
+<span id="cb82-5"><a href="#cb82-5"></a>  }</span>
+<span id="cb82-6"><a href="#cb82-6"></a>  out</span>
+<span id="cb82-7"><a href="#cb82-7"></a>}</span>
+<span id="cb82-8"><a href="#cb82-8"></a></span>
+<span id="cb82-9"><a href="#cb82-9"></a><span class="fu">summary_fun</span>(list_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  0.1365440  0.2305511 -0.1769054 -0.4934504</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1"></a><span class="fu">summary_fun</span>(list_df, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a><span class="fu">summary_fun</span>(list_df, sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6347788 0.7751028 0.7312435 0.9495169</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a><span class="fu">summary_fun</span>(list_df, max)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a><span class="fu">summary_fun</span>(list_df, max)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.4889313 1.4065252 0.9884837 1.9172157</code></pre>
 </div>
 </div>
 <div style="font-size:25px">
 <p>The idea of passing a function to another function is an extremely powerful idea, that makes R a functional programming language 👌🏽</p>
+</div>
+<div style="font-size:25px">
+<p>Can change the above function to accept data.frames ✌️</p>
+</div>
+</section>
+<section id="purrrmap" class="slide level2">
+<h2>Purrr::map()</h2>
+<p>The purrr r package provides functions that aid making iteration code succinct by avoiding the explicit use of for loops</p>
+<p>The <strong>map( )</strong> function is similar to the <strong>summary_fun( )</strong> that we have just seen on the previous slide. But <strong>map( )</strong>, is written in C, can take any number of arguments and supports use of short functions (anonymous functions)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1"></a><span class="co">#Purrr package is part of the tidyverse</span></span>
+<span id="cb88-2"><a href="#cb88-2"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="map-function" class="slide level2">
+<h2>Map function</h2>
+<p>The function map, takes as argument the vector (data) you want to iterate over and a function that you wan to to evaluate on each item of the input.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/Screenshot%202023-08-12%20at%209.45.08%20AM.png"></p>
+<figcaption>(image from Advanced-R, CC-BY-NC-SA 4.0)</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a>results_mean_list <span class="ot">&lt;-</span> <span class="fu">map</span>(list_df, mean)</span>
+<span id="cb89-2"><a href="#cb89-2"></a>results_mean_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$a
+[1] 0.136544
+
+$b
+[1] 0.2305511
+
+$c
+[1] -0.1769054
+
+$d
+[1] -0.4934504</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="variants-of-map-for-specific-output" class="slide level2">
+<h2>Variants of map for specific output</h2>
+<div style="font-size:30px">
+<p>Most times it is much better for map to return a simpler vector than a list type</p>
+<ul>
+<li><p>map_lgl(), logical vector</p></li>
+<li><p>map_int(), integer vector</p></li>
+<li><p>map_dbl(), double vector</p></li>
+<li><p>map_chr(), character vector</p></li>
+</ul>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a><span class="co">#get a vector of numerical values</span></span>
+<span id="cb91-2"><a href="#cb91-2"></a><span class="fu">map_dbl</span>(list_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         a          b          c          d 
+ 0.1365440  0.2305511 -0.1769054 -0.4934504 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a><span class="co">#get a vector of character values</span></span>
+<span id="cb93-2"><a href="#cb93-2"></a><span class="fu">map_chr</span>(list_df, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        a         b         c         d 
+"numeric" "numeric" "numeric" "numeric" </code></pre>
+</div>
+</div>
+</section>
+<section id="anonymous-functions" class="slide level2">
+<h2>Anonymous functions</h2>
+<div style="font-size:30px">
+<p>Remember the median_plus_two function</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a>median_plus_two</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function(x){
+  median(x) + 2
+}
+&lt;bytecode: 0x7fdea518a940&gt;</code></pre>
+</div>
+</div>
+<div style="font-size:30px">
+<p>When a function is short as this, you can create an anonymous function within map</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a><span class="fu">map_dbl</span>(list_df, <span class="cf">function</span>(x){ <span class="fu">median</span>(x) <span class="sc">+</span> <span class="dv">2</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       a        b        c        d 
+2.126721 2.441144 1.606057 1.570735 </code></pre>
+</div>
+</div>
+<div style="font-size:30px">
+<p>Starting with R 4.10, R now has a shortcut for anonymoous functions</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a><span class="fu">map_dbl</span>(list_df, \(x){ <span class="fu">median</span>(x) <span class="sc">+</span> <span class="dv">2</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       a        b        c        d 
+2.126721 2.441144 1.606057 1.570735 </code></pre>
+</div>
+</div>
+</section>
+<section id="passing-arguments-to-function-in-map" class="slide level2">
+<h2>Passing arguments to function in map</h2>
+<div style="font-size:30px">
+<p>How to pass arguments to a function that expects more than one argument</p>
+</div>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/Screenshot%202023-08-12%20at%2010.48.18%20AM.png"></p>
+<figcaption>(image from Advanced-R, CC-BY-SA 4.0)</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a>median_add_num <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb101-2"><a href="#cb101-2"></a>  <span class="fu">median</span>(x) <span class="sc">+</span> y</span>
+<span id="cb101-3"><a href="#cb101-3"></a>}</span>
+<span id="cb101-4"><a href="#cb101-4"></a></span>
+<span id="cb101-5"><a href="#cb101-5"></a><span class="co">#Add 4 to the median of each element</span></span>
+<span id="cb101-6"><a href="#cb101-6"></a><span class="fu">map_dbl</span>(list_df, median_add_num, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       a        b        c        d 
+4.126721 4.441144 3.606057 3.570735 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="co">#It is good practice to specify</span></span>
+<span id="cb103-2"><a href="#cb103-2"></a><span class="co">#the argument name</span></span>
+<span id="cb103-3"><a href="#cb103-3"></a><span class="fu">map_dbl</span>(list_df, median_add_num, <span class="at">y =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       a        b        c        d 
+4.126721 4.441144 3.606057 3.570735 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-map-with-dataframes" class="slide level2">
+<h2>Using map with dataframes</h2>
+<div style="font-size:30px">
+<p>Using map with dataframes will run the function against each column (variable).</p>
+<p>Note: a dataframe is a list underneath</p>
+</div>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a><span class="co">#check</span></span>
+<span id="cb105-2"><a href="#cb105-2"></a><span class="fu">class</span>(list_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1"></a><span class="co">#convert the list_df to a dataframe/tibble</span></span>
+<span id="cb107-2"><a href="#cb107-2"></a>tibble_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(list_df)</span>
+<span id="cb107-3"><a href="#cb107-3"></a></span>
+<span id="cb107-4"><a href="#cb107-4"></a><span class="co">#check the new class</span></span>
+<span id="cb107-5"><a href="#cb107-5"></a><span class="fu">class</span>(tibble_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1"></a>tibble_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+          a       b       c         d
+      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+ 1 -0.241   -0.0420  0.610   0.0949  
+ 2 -0.500   -0.932   0.988  -0.995   
+ 3 -0.395   -1.16   -0.931  -0.000235
+ 4 -0.795   -0.496   0.0438 -0.389   
+ 5  0.540    0.627  -0.552  -0.979   
+ 6  1.49     0.255  -0.543  -1.73    
+ 7  0.468    0.904  -0.245  -1.59    
+ 8  0.261    0.710  -0.549  -0.385   
+ 9  0.683    0.706  -1.25   -0.428   
+10 -0.00719  1.41    0.892  -1.00    
+11 -0.311    0.0632 -0.819   1.92    
+12  0.448    0.725   0.231  -0.431   </code></pre>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1"></a><span class="co">#mean of each column</span></span>
+<span id="cb111-2"><a href="#cb111-2"></a><span class="fu">map_dbl</span>(tibble_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         a          b          c          d 
+ 0.1365440  0.2305511 -0.1769054 -0.4934504 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1"></a><span class="co">#class of each column</span></span>
+<span id="cb113-2"><a href="#cb113-2"></a><span class="fu">map_chr</span>(tibble_df, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        a         b         c         d 
+"numeric" "numeric" "numeric" "numeric" </code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-penguis-dataset" class="slide level2">
+<h2>The penguis dataset</h2>
+<p><a href="https://allisonhorst.github.io/palmerpenguins/">To read more about the palmerpenguins</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a><span class="co">#install.packages("palmerpenguins")</span></span>
+<span id="cb115-2"><a href="#cb115-2"></a></span>
+<span id="cb115-3"><a href="#cb115-3"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb115-4"><a href="#cb115-4"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">'palmerpenguins'</span>)</span>
+<span id="cb115-5"><a href="#cb115-5"></a></span>
+<span id="cb115-6"><a href="#cb115-6"></a><span class="co">#explore the dataset</span></span>
+<span id="cb115-7"><a href="#cb115-7"></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007
+2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007
+3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007
+4 Adelie  Torgersen           NA            NA            NA      NA &lt;NA&gt;   2007
+5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007
+6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007
+# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g</code></pre>
+</div>
+</div>
+</section>
+<section id="calculate-some-summaries-for-each-column-of-the-penguins-dataset" class="slide level2">
+<h2>Calculate some summaries for each column of the penguins dataset</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1"></a><span class="co">#class of each column</span></span>
+<span id="cb117-2"><a href="#cb117-2"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb117-3"><a href="#cb117-3"></a>  <span class="fu">map_chr</span>(class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          species            island    bill_length_mm     bill_depth_mm 
+         "factor"          "factor"         "numeric"         "numeric" 
+flipper_length_mm       body_mass_g               sex              year 
+        "integer"         "integer"          "factor"         "integer" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1"></a><span class="co">#Number of unique values in each column</span></span>
+<span id="cb119-2"><a href="#cb119-2"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb119-3"><a href="#cb119-3"></a>  <span class="fu">map</span>(unique) <span class="sc">|&gt;</span></span>
+<span id="cb119-4"><a href="#cb119-4"></a>  <span class="fu">map_dbl</span>(length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          species            island    bill_length_mm     bill_depth_mm 
+                3                 3               165                81 
+flipper_length_mm       body_mass_g               sex              year 
+               56                95                 3                 3 </code></pre>
+</div>
+</div>
+</section>
+<section id="conditional-map" class="slide level2">
+<h2>Conditional map</h2>
+<p>Since penguins dataset has other non-numeric variables, we need a conditional map 😅</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1"></a><span class="fu">map_if</span>(penguins, is.numeric, mean, <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$species
+  [1] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+  [8] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [15] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [22] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [29] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [36] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [43] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [50] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [57] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [64] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [71] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [78] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [85] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [92] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+ [99] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+[106] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+[113] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+[120] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+[127] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+[134] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+[141] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
+[148] Adelie    Adelie    Adelie    Adelie    Adelie    Gentoo    Gentoo   
+[155] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[162] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[169] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[176] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[183] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[190] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[197] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[204] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[211] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[218] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[225] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[232] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[239] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[246] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[253] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[260] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[267] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   
+[274] Gentoo    Gentoo    Gentoo    Chinstrap Chinstrap Chinstrap Chinstrap
+[281] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[288] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[295] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[302] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[309] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[316] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[323] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[330] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[337] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap
+[344] Chinstrap
+Levels: Adelie Chinstrap Gentoo
+
+$island
+  [1] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen
+  [8] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen
+ [15] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Biscoe   
+ [22] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+ [29] Biscoe    Biscoe    Dream     Dream     Dream     Dream     Dream    
+ [36] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+ [43] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+ [50] Dream     Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+ [57] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+ [64] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Torgersen Torgersen
+ [71] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen
+ [78] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen
+ [85] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+ [92] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+ [99] Dream     Dream     Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[106] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[113] Biscoe    Biscoe    Biscoe    Biscoe    Torgersen Torgersen Torgersen
+[120] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen
+[127] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Dream    
+[134] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[141] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[148] Dream     Dream     Dream     Dream     Dream     Biscoe    Biscoe   
+[155] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[162] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[169] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[176] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[183] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[190] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[197] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[204] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[211] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[218] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[225] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[232] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[239] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[246] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[253] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[260] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[267] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   
+[274] Biscoe    Biscoe    Biscoe    Dream     Dream     Dream     Dream    
+[281] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[288] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[295] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[302] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[309] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[316] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[323] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[330] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[337] Dream     Dream     Dream     Dream     Dream     Dream     Dream    
+[344] Dream    
+Levels: Biscoe Dream Torgersen
+
+$bill_length_mm
+[1] 43.92193
+
+$bill_depth_mm
+[1] 17.15117
+
+$flipper_length_mm
+[1] 200.9152
+
+$body_mass_g
+[1] 4201.754
+
+$sex
+  [1] male   female female &lt;NA&gt;   female male   female male   &lt;NA&gt;   &lt;NA&gt;  
+ [11] &lt;NA&gt;   &lt;NA&gt;   female male   male   female female male   female male  
+ [21] female male   female male   male   female male   female female male  
+ [31] female male   female male   female male   male   female female male  
+ [41] female male   female male   female male   male   &lt;NA&gt;   female male  
+ [51] female male   female male   female male   female male   female male  
+ [61] female male   female male   female male   female male   female male  
+ [71] female male   female male   female male   female male   female male  
+ [81] female male   female male   female male   male   female male   female
+ [91] female male   female male   female male   female male   female male  
+[101] female male   female male   female male   female male   female male  
+[111] female male   female male   female male   female male   female male  
+[121] female male   female male   female male   female male   female male  
+[131] female male   female male   female male   female male   female male  
+[141] female male   female male   female male   male   female female male  
+[151] female male   female male   female male   male   female female male  
+[161] female male   female male   female male   female male   female male  
+[171] female male   male   female female male   female male   &lt;NA&gt;   male  
+[181] female male   male   female female male   female male   female male  
+[191] female male   female male   female male   male   female female male  
+[201] female male   female male   female male   female male   female male  
+[211] female male   female male   female male   female male   &lt;NA&gt;   male  
+[221] female male   female male   male   female female male   female male  
+[231] female male   female male   female male   female male   female male  
+[241] female male   female male   female male   female male   male   female
+[251] female male   female male   female male   &lt;NA&gt;   male   female male  
+[261] female male   female male   female male   female male   &lt;NA&gt;   male  
+[271] female &lt;NA&gt;   female male   female male   female male   male   female
+[281] male   female female male   female male   female male   female male  
+[291] female male   male   female female male   female male   female male  
+[301] female male   female male   female male   female male   female male  
+[311] male   female female male   female male   male   female male   female
+[321] female male   female male   male   female female male   female male  
+[331] female male   female male   male   female male   female female male  
+[341] female male   male   female
+Levels: female male
+
+$year
+[1] 2008.029</code></pre>
+</div>
+</div>
+</section>
+<section id="note-dplyr-has-better-options-for-achieving-the-previous-map-use" class="slide level2">
+<h2>Note dplyr has better options for achieving the previous map use</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb123-2"><a href="#cb123-2"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+           &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1           43.9          17.2              201.       4202. 2008.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1"></a><span class="co">#Can also do it by species of penguis</span></span>
+<span id="cb125-2"><a href="#cb125-2"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb125-3"><a href="#cb125-3"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb125-4"><a href="#cb125-4"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+  &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Adelie              38.8          18.3              190.       3701. 2008.
+2 Chinstrap           48.8          18.4              196.       3733. 2008.
+3 Gentoo              47.5          15.0              217.       5076. 2008.</code></pre>
+</div>
+</div>
+</section>
+<section id="example-of-reading-multiple-files" class="slide level2">
+<h2>Example of reading multiple files</h2>
+<p>Imagine that each of the species of penguin are in a separate csv file present in the data folder</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1"></a><span class="fu">dir</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Adelie.csv"    "Chinstrap.csv" "Gentoo.csv"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"data"</span>)</span>
+<span id="cb129-2"><a href="#cb129-2"></a></span>
+<span id="cb129-3"><a href="#cb129-3"></a><span class="co">#Read in the separate species of penquis</span></span>
+<span id="cb129-4"><a href="#cb129-4"></a><span class="fu">map</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+# A tibble: 152 × 8
+   species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
+   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
+ 2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
+ 3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
+ 4 Adelie  Torgersen           NA            NA           NA      NA &lt;NA&gt;   2007
+ 5 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
+ 6 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
+ 7 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
+ 8 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
+ 9 Adelie  Torgersen           34.1          18.1        193    3475 &lt;NA&gt;   2007
+10 Adelie  Torgersen           42            20.2        190    4250 &lt;NA&gt;   2007
+# … with 142 more rows, and abbreviated variable names ¹​flipper_length_mm,
+#   ²​body_mass_g
+
+[[2]]
+# A tibble: 68 × 8
+   species   island bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
+   &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1 Chinstrap Dream            46.5          17.9         192    3500 fema…  2007
+ 2 Chinstrap Dream            50            19.5         196    3900 male   2007
+ 3 Chinstrap Dream            51.3          19.2         193    3650 male   2007
+ 4 Chinstrap Dream            45.4          18.7         188    3525 fema…  2007
+ 5 Chinstrap Dream            52.7          19.8         197    3725 male   2007
+ 6 Chinstrap Dream            45.2          17.8         198    3950 fema…  2007
+ 7 Chinstrap Dream            46.1          18.2         178    3250 fema…  2007
+ 8 Chinstrap Dream            51.3          18.2         197    3750 male   2007
+ 9 Chinstrap Dream            46            18.9         195    4150 fema…  2007
+10 Chinstrap Dream            51.3          19.9         198    3700 male   2007
+# … with 58 more rows, and abbreviated variable names ¹​flipper_length_mm,
+#   ²​body_mass_g
+
+[[3]]
+# A tibble: 124 × 8
+   species island bill_length_mm bill_depth_mm flipper_len…¹ body_…² sex    year
+   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1 Gentoo  Biscoe           46.1          13.2           211    4500 fema…  2007
+ 2 Gentoo  Biscoe           50            16.3           230    5700 male   2007
+ 3 Gentoo  Biscoe           48.7          14.1           210    4450 fema…  2007
+ 4 Gentoo  Biscoe           50            15.2           218    5700 male   2007
+ 5 Gentoo  Biscoe           47.6          14.5           215    5400 male   2007
+ 6 Gentoo  Biscoe           46.5          13.5           210    4550 fema…  2007
+ 7 Gentoo  Biscoe           45.4          14.6           211    4800 fema…  2007
+ 8 Gentoo  Biscoe           46.7          15.3           219    5200 male   2007
+ 9 Gentoo  Biscoe           43.3          13.4           209    4400 fema…  2007
+10 Gentoo  Biscoe           46.8          15.4           215    5150 male   2007
+# … with 114 more rows, and abbreviated variable names ¹​flipper_length_mm,
+#   ²​body_mass_g</code></pre>
+</div>
+</div>
+</section>
+<section id="dataframe-variant-of-map" class="slide level2">
+<h2>Dataframe variant of map</h2>
+<p>The output of map is a list, in this case all the files are of the same structure, we might want to turn this into a single data frame.</p>
+<p>map_dfr function returns a dataframe by binding all rows</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1"></a><span class="fu">map_dfr</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 × 8
+   species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
+   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
+ 2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
+ 3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
+ 4 Adelie  Torgersen           NA            NA           NA      NA &lt;NA&gt;   2007
+ 5 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
+ 6 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
+ 7 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
+ 8 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
+ 9 Adelie  Torgersen           34.1          18.1        193    3475 &lt;NA&gt;   2007
+10 Adelie  Torgersen           42            20.2        190    4250 &lt;NA&gt;   2007
+# … with 334 more rows, and abbreviated variable names ¹​flipper_length_mm,
+#   ²​body_mass_g</code></pre>
+</div>
 </div>
 <div class="footer footer-default">
 
