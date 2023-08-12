@@ -466,7 +466,7 @@ McEwen Khundi, PhD
 </section>
 <section id="any-number-of-arguments" class="slide level2">
 <h2>Any number of arguments:</h2>
-<p>Can accept any number of arguments by using the … in its parenthesis. In R this is often used to pass arguments that are passed to other function</p>
+<p>Can accept any number of arguments by using the … in its parenthesis. In R this is often used to pass arguments that are passed to another function</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(..., <span class="at">allowmissing =</span> <span class="cn">TRUE</span>){</span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">sum</span>(..., <span class="at">na.rm =</span> allowmissing)</span>
@@ -588,7 +588,7 @@ McEwen Khundi, PhD
 x + y
 
 }
-&lt;bytecode: 0x7fdea49f8680&gt;</code></pre>
+&lt;bytecode: 0x7fb79550d6c8&gt;</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -606,7 +606,7 @@ x + y
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x7fdea369c710&gt;
+&lt;bytecode: 0x7fb794341d10&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -703,7 +703,7 @@ UseMethod("mean")
 <div class="columns">
 <div class="column" style="width:50%;">
 <div style="font-size:30px">
-<p>A vector can be named in three ways</p>
+<p>Two ways of naming a vector’s elements</p>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co">#When creating it</span></span>
@@ -745,7 +745,7 @@ UseMethod("mean")
 </section>
 <section id="dimension-attribute" class="slide level2">
 <h2>Dimension attribute</h2>
-<p>Another common and important attribute of vectors is the dimensions.</p>
+<p>Another common and important attribute that can be added to vectors is dimensions</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
@@ -763,7 +763,7 @@ UseMethod("mean")
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co">#z with dimentions</span></span>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co">#z with 2d dimension</span></span>
 <span id="cb50-2"><a href="#cb50-2"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
@@ -779,7 +779,7 @@ UseMethod("mean")
 <h2>Dataframes and tibbles</h2>
 <div style="font-size:20px">
 <p>Dataframes/tibbles are built on top of lists.</p>
-<p>They are made of a named list, with a constraint that each item is a vector and that each of the items have the same length.</p>
+<p>They are made of a named list, with a constraint that each item is a vector and that each of the items has the same length.</p>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co">#The iris dataset is part of R</span></span>
@@ -828,7 +828,7 @@ $row.names
 <h2>Code re-factoring</h2>
 <div style="font-size:20px">
 <p>One advantage of coding is that it allows us to reduce repetition of a task. Assume you have a list with 4 elements, imagine you want to compute the median of each element of the list and add 2.</p>
-<p><strong>Never copy and pastes more than twice!</strong></p>
+<p><strong>Never copy and pastes more than twice!</strong> ⚠️</p>
 </div>
 <div class="cell columns column-output-location">
 <div class="column">
@@ -896,7 +896,7 @@ $row.names
 </div>
 </div>
 <div style="font-size:25px">
-<p>We still broke the rule of never copying and pasting more than twice. What other steps can we take ?</p>
+<p>We still broke the rule of never copying and pasting more than twice 🤦🏽 What other steps can we take 🤷‍♂️</p>
 </div>
 </section>
 <section id="for-loop" class="slide level2">
@@ -915,7 +915,7 @@ $row.names
 </div>
 </div>
 <div style="font-size:25px">
-<p>Other improvements would be to turn the above code into a function that takes a dataframe</p>
+<p>Other improvements would be to turn the above code into a function that takes in a list</p>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>median_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
@@ -1109,7 +1109,7 @@ $d
 <pre><code>function(x){
   median(x) + 2
 }
-&lt;bytecode: 0x7fdea518a940&gt;</code></pre>
+&lt;bytecode: 0x7fb797c62978&gt;</code></pre>
 </div>
 </div>
 <div style="font-size:30px">
@@ -1133,8 +1133,8 @@ $d
 </div>
 </div>
 </section>
-<section id="passing-arguments-to-function-in-map" class="slide level2">
-<h2>Passing arguments to function in map</h2>
+<section id="passing-arguments-to-a-function-in-map" class="slide level2">
+<h2>Passing arguments to a function in map</h2>
 <div style="font-size:30px">
 <p>How to pass arguments to a function that expects more than one argument</p>
 </div>
@@ -1230,7 +1230,7 @@ $d
 </section>
 <section id="the-penguis-dataset" class="slide level2">
 <h2>The penguis dataset</h2>
-<p><a href="https://allisonhorst.github.io/palmerpenguins/">To read more about the palmerpenguins</a></p>
+<p><a href="https://allisonhorst.github.io/palmerpenguins/">more about the palmerpenguins</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a><span class="co">#install.packages("palmerpenguins")</span></span>
 <span id="cb115-2"><a href="#cb115-2"></a></span>
@@ -1558,6 +1558,61 @@ $year
 # … with 334 more rows, and abbreviated variable names ¹​flipper_length_mm,
 #   ²​body_mass_g</code></pre>
 </div>
+</div>
+</section>
+<section id="more-variants-of-map" class="slide level2">
+<h2>More variants of map</h2>
+<div style="font-size:30px">
+<p>Like we have seen map has so many variants some of which we have not explored in this session.</p>
+<p>For instance if you have a function that takes two vectors there is map2</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1"></a><span class="fu">map2</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, \(x,y){x <span class="sc">+</span> y})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 6
+
+[[2]]
+[1] 8
+
+[[3]]
+[1] 10</code></pre>
+</div>
+</div>
+<div style="font-size:30px">
+<p>See the references below to explore other map variants:</p>
+<ul>
+<li><p><a href="https://r4ds.had.co.nz/iteration.html">R for Data Science: 21 Iteration</a></p></li>
+<li><p><a href="https://adv-r.hadley.nz/functionals.html">Advanced R: 9 Functionals</a></p></li>
+</ul>
+</div>
+</section>
+<section id="base-r-map-functions" class="slide level2">
+<h2>Base R map functions</h2>
+<p>The apply family of function in base R do similar tasks as the purrr functions</p>
+<ul>
+<li><p>apply, lapply are similar to map</p></li>
+<li><p>sapply, vapply most similar to the map_* functions but are more verbose</p></li>
+</ul>
+<p>The purrr functions are more consistent, once you master one it is easier to use the rest and they are also well documented</p>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+</section>
+<section id="acknowledgements-and-references" class="slide level2">
+<h2>Acknowledgements and references</h2>
+<p>Thanks for attending ! 👏🏽👏🏽👏🏽👏🏽</p>
+<div style="font-size:30px">
+<p>The slides can be downloaded at: <a href="https://github.com/mcewenkhundi/functionalpurrr" class="uri">https://github.com/mcewenkhundi/functionalpurrr</a></p>
+<p>The slides were inspired by a talk that Tom Jemmett gave at <a href="https:://github.com/NHS-R-Community/Webinars/">NHS-R Community</a></p>
+<p><strong>Books</strong></p>
+<ul>
+<li><p><a href="https://r4ds.had.co.nz/iteration.html">R for Data Science: 21 Iteration</a></p></li>
+<li><p><a href="https://r4ds.had.co.nz/vectors.html">R for Data Science: 20 Vectors</a></p></li>
+<li><p><a href="https://adv-r.hadley.nz/functionals.html">Advanced R: 9 Functionals</a></p></li>
+<li><p><a href="https://dplyr.tidyverse.org/articles/colwise.html">Dplyr documentation for columnwise operations</a></p></li>
+<li><p><a href="https://purrr.tidyverse.org/">Package Purrr documentations</a></p></li>
+</ul>
 </div>
 <div class="footer footer-default">
 

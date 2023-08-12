@@ -84,7 +84,7 @@ add_two_numbers(x = 3, y = 2)
 
 ## Any number of arguments:
 
-Can accept any number of arguments by using the ... in its parenthesis. In R this is often used to pass arguments that are passed to other function
+Can accept any number of arguments by using the ... in its parenthesis. In R this is often used to pass arguments that are passed to another function
 
 ```{r}
 #| code-line-numbers: "|2"
@@ -296,7 +296,7 @@ You can add attributes to a vector elements such as names
 ::: columns
 ::: {.column width="50%"}
 ::: {style="font-size:30px"}
-A vector can be named in three ways
+Two ways of naming a vector's elements
 :::
 
 ```{r}
@@ -330,7 +330,7 @@ y["b"]
 
 ## Dimension attribute
 
-Another common and important attribute of vectors is the dimensions.
+Another common and important attribute that can be added to vectors is dimensions
 
 ::: columns
 ::: {.column width="50%"}
@@ -348,7 +348,7 @@ dim(z) <- c(3,2)
 #| echo: true
 #dimensions 
 dim(z)
-#z with dimentions
+#z with 2d dimension
 z
 ```
 :::
@@ -359,7 +359,7 @@ z
 ::: {style="font-size:20px"}
 Dataframes/tibbles are built on top of lists.
 
-They are made of a named list, with a constraint that each item is a vector and that each of the items have the same length.
+They are made of a named list, with a constraint that each item is a vector and that each of the items has the same length.
 :::
 
 ```{r}
@@ -386,7 +386,7 @@ str(iris)
 ::: {style="font-size:20px"}
 One advantage of coding is that it allows us to reduce repetition of a task. Assume you have a list with 4 elements, imagine you want to compute the median of each element of the list and add 2.
 
-**Never copy and pastes more than twice!**
+**Never copy and pastes more than twice!** ⚠️
 :::
 
 ```{r}
@@ -436,7 +436,7 @@ median_plus_two(list_df$d)
 ```
 
 ::: {style="font-size:25px"}
-We still broke the rule of never copying and pasting more than twice. What other steps can we take ?
+We still broke the rule of never copying and pasting more than twice 🤦🏽 What other steps can we take 🤷‍♂️
 :::
 
 ## For loop
@@ -457,7 +457,7 @@ output
 ```
 
 ::: {style="font-size:25px"}
-Other improvements would be to turn the above code into a function that takes a dataframe
+Other improvements would be to turn the above code into a function that takes in a list
 :::
 
 ```{r}
@@ -651,7 +651,7 @@ Starting with R 4.10, R now has a shortcut for anonymoous functions
 map_dbl(list_df, \(x){ median(x) + 2})
 ```
 
-## Passing arguments to function in map
+## Passing arguments to a function in map
 
 ::: {style="font-size:30px"}
 How to pass arguments to a function that expects more than one argument
@@ -722,7 +722,7 @@ map_chr(tibble_df, class)
 
 ## The penguis dataset
 
-[To read more about the palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+[more about the palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
 
 ```{r}
 #| echo: true
@@ -777,7 +777,7 @@ penguins |>
 
 ```
 
-## Example of reading multiple files 
+## Example of reading multiple files
 
 Imagine that each of the species of penguin are in a separate csv file present in the data folder
 
@@ -803,3 +803,59 @@ map_dfr function returns a dataframe by binding all rows
 
 map_dfr(here::here("data",files), read_csv)
 ```
+
+## More variants of map
+
+::: {style="font-size:30px"}
+Like we have seen map has so many variants some of which we have not explored in this session.
+
+For instance if you have a function that takes two vectors there is map2
+:::
+
+```{r}
+#| echo: true
+
+map2(1:3, 5:7, \(x,y){x + y})
+```
+
+::: {style="font-size:30px"}
+See the references below to explore other map variants:
+
+-   [R for Data Science: 21 Iteration](https://r4ds.had.co.nz/iteration.html)
+
+-   [Advanced R: 9 Functionals](https://adv-r.hadley.nz/functionals.html)
+:::
+
+## Base R map functions
+
+The apply family of function in base R do similar tasks as the purrr functions
+
+-   apply, lapply are similar to map
+
+-   sapply, vapply most similar to the map\_\* functions but are more verbose
+
+The purrr functions are more consistent, once you master one it is easier to use the rest and they are also well documented
+
+## Summary
+
+## Acknowledgements and references
+
+Thanks for attending ! 👏🏽👏🏽👏🏽👏🏽
+
+::: {style="font-size:30px"}
+The slides can be downloaded at: <https://github.com/mcewenkhundi/functionalpurrr>
+
+The slides were inspired by a talk that Tom Jemmett gave at [NHS-R Community](https:://github.com/NHS-R-Community/Webinars/)
+
+**Books**
+
+-   [R for Data Science: 21 Iteration](https://r4ds.had.co.nz/iteration.html)
+
+-   [R for Data Science: 20 Vectors](https://r4ds.had.co.nz/vectors.html)
+
+-   [Advanced R: 9 Functionals](https://adv-r.hadley.nz/functionals.html)
+
+-   [Dplyr documentation for columnwise operations](https://dplyr.tidyverse.org/articles/colwise.html)
+
+-   [Package Purrr documentations](https://purrr.tidyverse.org/)
+:::
