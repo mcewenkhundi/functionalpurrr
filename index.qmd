@@ -463,7 +463,7 @@ Other improvements would be to turn the above code into a function that takes in
 ```{r}
 #| echo: true
 
-median_fun <- function(df){
+median_func <- function(df){
   output <- vector("double", length(df))  # 1. output
 for (i in seq_along(df)) {            # 2. sequence
   output[[i]] <- median_plus_two(df[[i]])      # 3. body
@@ -472,7 +472,7 @@ output
 }
 
 # a user now only has to use median_func
-median_fun(list_df)
+median_func(list_df)
 ```
 
 ## Now you would like to compute other summaries: mean(), sd(), max() etc
@@ -483,7 +483,7 @@ median_fun(list_df)
 ```{r}
 #| echo: true
 
-mean_fun <- function(df){
+mean_func <- function(df){
   output <- vector("double", length(df))  # 1. output
 for (i in seq_along(df)) {            # 2. sequence
   output[[i]] <- mean(df[[i]])      # 3. body
@@ -492,7 +492,7 @@ output
 }
 
 # a user now only has to use median_func
-mean_fun(list_df)
+mean_func(list_df)
 ```
 
 ## Standard deviation
@@ -500,7 +500,7 @@ mean_fun(list_df)
 ```{r}
 #| echo: true
 
-sd_fun <- function(df){
+sd_func <- function(df){
   output <- vector("double", length(df))  # 1. output
 for (i in seq_along(df)) {            # 2. sequence
   output[[i]] <- sd(df[[i]])      # 3. body
@@ -509,7 +509,7 @@ output
 }
 
 # a user now only has to use median_func
-sd_fun(list_df)
+sd_func(list_df)
 ```
 
 ## Maximum
@@ -517,7 +517,7 @@ sd_fun(list_df)
 ```{r}
 #| echo: true
 
-max_fun <- function(df){
+max_func <- function(df){
   output <- vector("double", length(df))  # 1. output
 for (i in seq_along(df)) {            # 2. sequence
   output[[i]] <- max(df[[i]])      # 3. body
@@ -526,7 +526,7 @@ output
 }
 
 # a user now only has to use median_func
-max_fun(list_df)
+max_func(list_df)
 ```
 :::
 
@@ -541,7 +541,7 @@ Oops! We have violated the the rule of copying and pasting 😅
 ```{r}
 #| echo: true
 
-summary_fun <- function(df, fun) {
+summary_func <- function(df, fun) {
   out <- vector("double", length(df))
   for (i in seq_along(df)) {
     out[i] <- fun(df[[i]])
@@ -549,9 +549,9 @@ summary_fun <- function(df, fun) {
   out
 }
 
-summary_fun(list_df, mean)
-summary_fun(list_df, sd)
-summary_fun(list_df, max)
+summary_func(list_df, mean)
+summary_func(list_df, sd)
+summary_func(list_df, max)
 ```
 
 ::: {style="font-size:25px"}
