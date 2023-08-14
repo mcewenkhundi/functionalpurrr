@@ -588,7 +588,7 @@ McEwen Khundi, PhD
 x + y
 
 }
-&lt;bytecode: 0x7f9a95e3bac8&gt;</code></pre>
+&lt;bytecode: 0x7fe0c75c7a58&gt;</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -606,7 +606,7 @@ x + y
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x7f9a648fcf10&gt;
+&lt;bytecode: 0x7fe0d5df9910&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -1028,7 +1028,7 @@ $row.names
 <p>The idea of passing a function to another function is an extremely powerful idea, that makes R a functional programming language 👌🏽</p>
 </div>
 <div style="font-size:25px">
-<p>Can change the above function to accept data.frames ✌️</p>
+<p>The above function can also accept data.frames ✌️</p>
 </div>
 </section>
 <section id="purrrmap" class="slide level2">
@@ -1042,7 +1042,7 @@ $row.names
 </section>
 <section id="map-function" class="slide level2">
 <h2>Map function</h2>
-<p>The function map, takes as argument the vector (data) you want to iterate over and a function that you wan to to evaluate on each item of the input.</p>
+<p>The function map, takes as argument the vector (data) you want to iterate over and a function that you want to to evaluate on each item of the input.</p>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
@@ -1109,7 +1109,7 @@ $d
 <pre><code>function(x){
   median(x) + 2
 }
-&lt;bytecode: 0x7f9a65700d78&gt;</code></pre>
+&lt;bytecode: 0x7fe0b655a908&gt;</code></pre>
 </div>
 </div>
 <div style="font-size:30px">
@@ -1191,7 +1191,12 @@ $d
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1"></a>tibble_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1"></a><span class="co">#underlying vector type</span></span>
+<span id="cb109-2"><a href="#cb109-2"></a><span class="fu">typeof</span>(tibble_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1"></a>tibble_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 4
           a       b       c         d
@@ -1212,14 +1217,14 @@ $d
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1"></a><span class="co">#mean of each column</span></span>
-<span id="cb111-2"><a href="#cb111-2"></a><span class="fu">map_dbl</span>(tibble_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1"></a><span class="co">#mean of each column</span></span>
+<span id="cb113-2"><a href="#cb113-2"></a><span class="fu">map_dbl</span>(tibble_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         a          b          c          d 
  0.1365440  0.2305511 -0.1769054 -0.4934504 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1"></a><span class="co">#class of each column</span></span>
-<span id="cb113-2"><a href="#cb113-2"></a><span class="fu">map_chr</span>(tibble_df, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a><span class="co">#class of each column</span></span>
+<span id="cb115-2"><a href="#cb115-2"></a><span class="fu">map_chr</span>(tibble_df, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        a         b         c         d 
 "numeric" "numeric" "numeric" "numeric" </code></pre>
@@ -1232,43 +1237,518 @@ $d
 <h2>The penguis dataset</h2>
 <p><a href="https://allisonhorst.github.io/palmerpenguins/">more about the palmerpenguins</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a><span class="co">#install.packages("palmerpenguins")</span></span>
-<span id="cb115-2"><a href="#cb115-2"></a></span>
-<span id="cb115-3"><a href="#cb115-3"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb115-4"><a href="#cb115-4"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">'palmerpenguins'</span>)</span>
-<span id="cb115-5"><a href="#cb115-5"></a></span>
-<span id="cb115-6"><a href="#cb115-6"></a><span class="co">#explore the dataset</span></span>
-<span id="cb115-7"><a href="#cb115-7"></a><span class="fu">head</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  species island    bill_length_mm bill_depth_mm flipper_l…¹ body_…² sex    year
-  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-1 Adelie  Torgersen           39.1          18.7         181    3750 male   2007
-2 Adelie  Torgersen           39.5          17.4         186    3800 fema…  2007
-3 Adelie  Torgersen           40.3          18           195    3250 fema…  2007
-4 Adelie  Torgersen           NA            NA            NA      NA &lt;NA&gt;   2007
-5 Adelie  Torgersen           36.7          19.3         193    3450 fema…  2007
-6 Adelie  Torgersen           39.3          20.6         190    3650 male   2007
-# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g</code></pre>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1"></a><span class="co">#install.packages("palmerpenguins")</span></span>
+<span id="cb117-2"><a href="#cb117-2"></a></span>
+<span id="cb117-3"><a href="#cb117-3"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb117-4"><a href="#cb117-4"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">'palmerpenguins'</span>)</span>
+<span id="cb117-5"><a href="#cb117-5"></a></span>
+<span id="cb117-6"><a href="#cb117-6"></a><span class="co">#explore the dataset</span></span>
+<span id="cb117-7"><a href="#cb117-7"></a>gt<span class="sc">::</span><span class="fu">gt</span>(<span class="fu">head</span>(penguins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="xsxcrryzef" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xsxcrryzef .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xsxcrryzef .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xsxcrryzef .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xsxcrryzef .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xsxcrryzef .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xsxcrryzef .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xsxcrryzef .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xsxcrryzef .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xsxcrryzef .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xsxcrryzef .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xsxcrryzef .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xsxcrryzef .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xsxcrryzef .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xsxcrryzef .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xsxcrryzef .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xsxcrryzef .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xsxcrryzef .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xsxcrryzef .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xsxcrryzef .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xsxcrryzef .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xsxcrryzef .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xsxcrryzef .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xsxcrryzef .gt_left {
+  text-align: left;
+}
+
+#xsxcrryzef .gt_center {
+  text-align: center;
+}
+
+#xsxcrryzef .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xsxcrryzef .gt_font_normal {
+  font-weight: normal;
+}
+
+#xsxcrryzef .gt_font_bold {
+  font-weight: bold;
+}
+
+#xsxcrryzef .gt_font_italic {
+  font-style: italic;
+}
+
+#xsxcrryzef .gt_super {
+  font-size: 65%;
+}
+
+#xsxcrryzef .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#xsxcrryzef .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xsxcrryzef .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xsxcrryzef .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xsxcrryzef .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xsxcrryzef .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xsxcrryzef .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table" data-quarto-postprocess="true">
+<thead class="gt_col_headings">
+<tr class="header">
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">species</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">island</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">bill_length_mm</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">bill_depth_mm</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">flipper_length_mm</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">body_mass_g</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">sex</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">year</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center">Adelie</td>
+<td class="gt_row gt_center">Torgersen</td>
+<td class="gt_row gt_right">39.1</td>
+<td class="gt_row gt_right">18.7</td>
+<td class="gt_row gt_right">181</td>
+<td class="gt_row gt_right">3750</td>
+<td class="gt_row gt_center">male</td>
+<td class="gt_row gt_right">2007</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center">Adelie</td>
+<td class="gt_row gt_center">Torgersen</td>
+<td class="gt_row gt_right">39.5</td>
+<td class="gt_row gt_right">17.4</td>
+<td class="gt_row gt_right">186</td>
+<td class="gt_row gt_right">3800</td>
+<td class="gt_row gt_center">female</td>
+<td class="gt_row gt_right">2007</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center">Adelie</td>
+<td class="gt_row gt_center">Torgersen</td>
+<td class="gt_row gt_right">40.3</td>
+<td class="gt_row gt_right">18.0</td>
+<td class="gt_row gt_right">195</td>
+<td class="gt_row gt_right">3250</td>
+<td class="gt_row gt_center">female</td>
+<td class="gt_row gt_right">2007</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center">Adelie</td>
+<td class="gt_row gt_center">Torgersen</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_right">NA</td>
+<td class="gt_row gt_center">NA</td>
+<td class="gt_row gt_right">2007</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center">Adelie</td>
+<td class="gt_row gt_center">Torgersen</td>
+<td class="gt_row gt_right">36.7</td>
+<td class="gt_row gt_right">19.3</td>
+<td class="gt_row gt_right">193</td>
+<td class="gt_row gt_right">3450</td>
+<td class="gt_row gt_center">female</td>
+<td class="gt_row gt_right">2007</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center">Adelie</td>
+<td class="gt_row gt_center">Torgersen</td>
+<td class="gt_row gt_right">39.3</td>
+<td class="gt_row gt_right">20.6</td>
+<td class="gt_row gt_right">190</td>
+<td class="gt_row gt_right">3650</td>
+<td class="gt_row gt_center">male</td>
+<td class="gt_row gt_right">2007</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 </section>
 <section id="calculate-some-summaries-for-each-column-of-the-penguins-dataset" class="slide level2">
 <h2>Calculate some summaries for each column of the penguins dataset</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1"></a><span class="co">#class of each column</span></span>
-<span id="cb117-2"><a href="#cb117-2"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb117-3"><a href="#cb117-3"></a>  <span class="fu">map_chr</span>(class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1"></a><span class="co">#class of each column</span></span>
+<span id="cb118-2"><a href="#cb118-2"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb118-3"><a href="#cb118-3"></a>  <span class="fu">map_chr</span>(class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          species            island    bill_length_mm     bill_depth_mm 
          "factor"          "factor"         "numeric"         "numeric" 
 flipper_length_mm       body_mass_g               sex              year 
         "integer"         "integer"          "factor"         "integer" </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1"></a><span class="co">#Number of unique values in each column</span></span>
-<span id="cb119-2"><a href="#cb119-2"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb119-3"><a href="#cb119-3"></a>  <span class="fu">map</span>(unique) <span class="sc">|&gt;</span></span>
-<span id="cb119-4"><a href="#cb119-4"></a>  <span class="fu">map_dbl</span>(length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1"></a><span class="co">#Number of unique values in each column</span></span>
+<span id="cb120-2"><a href="#cb120-2"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb120-3"><a href="#cb120-3"></a>  <span class="fu">map</span>(unique) <span class="sc">|&gt;</span></span>
+<span id="cb120-4"><a href="#cb120-4"></a>  <span class="fu">map_dbl</span>(length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          species            island    bill_length_mm     bill_depth_mm 
                 3                 3               165                81 
@@ -1281,7 +1761,7 @@ flipper_length_mm       body_mass_g               sex              year
 <h2>Conditional map</h2>
 <p>Since penguins dataset has other non-numeric variables, we need a conditional map 😅</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1"></a><span class="fu">map_if</span>(penguins, is.numeric, mean, <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1"></a><span class="fu">map_if</span>(penguins, is.numeric, mean, <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$species
   [1] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
@@ -1447,18 +1927,18 @@ $year
 <section id="note-dplyr-has-better-options-for-achieving-the-previous-map-use" class="slide level2">
 <h2>Note dplyr has better options for achieving the previous map use</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb123-2"><a href="#cb123-2"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb124-2"><a href="#cb124-2"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
            &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
 1           43.9          17.2              201.       4202. 2008.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1"></a><span class="co">#Can also do it by species of penguis</span></span>
-<span id="cb125-2"><a href="#cb125-2"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb125-3"><a href="#cb125-3"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb125-4"><a href="#cb125-4"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1"></a><span class="co">#Can also do it by species of penguis</span></span>
+<span id="cb126-2"><a href="#cb126-2"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb126-3"><a href="#cb126-3"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb126-4"><a href="#cb126-4"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 6
   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
@@ -1473,14 +1953,14 @@ $year
 <h2>Example of reading multiple files</h2>
 <p>Imagine that each of the species of penguin are in a separate csv file present in the data folder</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1"></a><span class="fu">dir</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1"></a><span class="fu">dir</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adelie.csv"    "Chinstrap.csv" "Gentoo.csv"   </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"data"</span>)</span>
-<span id="cb129-2"><a href="#cb129-2"></a></span>
-<span id="cb129-3"><a href="#cb129-3"></a><span class="co">#Read in the separate species of penquis</span></span>
-<span id="cb129-4"><a href="#cb129-4"></a><span class="fu">map</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"data"</span>)</span>
+<span id="cb130-2"><a href="#cb130-2"></a></span>
+<span id="cb130-3"><a href="#cb130-3"></a><span class="co">#Read in the separate species of penquis</span></span>
+<span id="cb130-4"><a href="#cb130-4"></a><span class="fu">map</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 # A tibble: 152 × 8
@@ -1540,7 +2020,7 @@ $year
 <p>The output of map is a list, in this case all the files are of the same structure, we might want to turn this into a single data frame.</p>
 <p>map_dfr function returns a dataframe by binding all rows</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1"></a><span class="fu">map_dfr</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1"></a><span class="fu">map_dfr</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 344 × 8
    species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
@@ -1567,7 +2047,7 @@ $year
 <p>For instance if you have a function that takes two vectors there is map2</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1"></a><span class="fu">map2</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, \(x,y){x <span class="sc">+</span> y})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1"></a><span class="fu">map2</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, \(x,y){x <span class="sc">+</span> y})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] 6
@@ -1611,7 +2091,7 @@ $year
 <li><p><a href="https://r4ds.had.co.nz/vectors.html">R for Data Science: 20 Vectors</a></p></li>
 <li><p><a href="https://adv-r.hadley.nz/functionals.html">Advanced R: 9 Functionals</a></p></li>
 <li><p><a href="https://dplyr.tidyverse.org/articles/colwise.html">Dplyr documentation for columnwise operations</a></p></li>
-<li><p><a href="https://purrr.tidyverse.org/">Package Purrr documentations</a></p></li>
+<li><p><a href="https://purrr.tidyverse.org/">Package Purrr documentation</a></p></li>
 </ul>
 </div>
 <div class="footer footer-default">

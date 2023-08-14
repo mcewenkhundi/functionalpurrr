@@ -559,7 +559,7 @@ The idea of passing a function to another function is an extremely powerful idea
 :::
 
 ::: {style="font-size:25px"}
-Can change the above function to accept data.frames ✌️
+The above function can also accept data.frames ✌️
 :::
 
 ## Purrr::map()
@@ -578,7 +578,7 @@ library(tidyverse)
 
 ## Map function
 
-The function map, takes as argument the vector (data) you want to iterate over and a function that you wan to to evaluate on each item of the input.
+The function map, takes as argument the vector (data) you want to iterate over and a function that you want to to evaluate on each item of the input.
 
 ::: columns
 ::: {.column width="40%"}
@@ -702,6 +702,9 @@ tibble_df <- as_tibble(list_df)
 #check the new class
 class(tibble_df)
 
+#underlying vector type
+typeof(tibble_df)
+
 tibble_df
 
 ```
@@ -732,7 +735,7 @@ library(palmerpenguins)
 data(package = 'palmerpenguins')
 
 #explore the dataset
-head(penguins)
+gt::gt(head(penguins))
 ```
 
 ## Calculate some summaries for each column of the penguins dataset
@@ -801,7 +804,7 @@ map_dfr function returns a dataframe by binding all rows
 ```{r}
 #| echo: true
 
-map_dfr(here::here("data",files), read_csv)
+map_dfr(here::here("data",files), read_csv) 
 ```
 
 ## More variants of map
@@ -857,5 +860,5 @@ The slides were inspired by a talk that Tom Jemmett gave at [NHS-R Community](ht
 
 -   [Dplyr documentation for columnwise operations](https://dplyr.tidyverse.org/articles/colwise.html)
 
--   [Package Purrr documentations](https://purrr.tidyverse.org/)
+-   [Package Purrr documentation](https://purrr.tidyverse.org/)
 :::
