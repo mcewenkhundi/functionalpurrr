@@ -841,12 +841,42 @@ The purrr functions are more consistent, once you master one it is easier to use
 
 ## Summary
 
+::: {style="font-size:30px"}
+-   Map is an example of a functional: a function that accepts other functions as input and returns a vector as output.
+
+    -   To use a map function:
+
+        -   Decide how you can solve the problem for a single element of a vector. Purrr functions help in generalizing the solution to every element of the vector.
+
+        -   In other words, purrr functions assist in breaking down a complex problem into small steps. It is also possible to compose data analysis steps using pipes
+
+-   In general, the first argument of map is an input vector (you would like to loop over)
+
+-   The second argument is the function you want to be applied to each element of the vector.
+:::
+
+## Summary...
+
+::: {style="font-size:35px"}
+-   The function passed to map, can be a function from a package, created or an anonymous function
+
+-   There are map\_\* that return a specif vector type
+
+-   Other map function types that we haven't covered, i.e. walk, pmap...
+
+-   The knowledge of map, extends to other iterative functionals in the tidyverse such as the across function in dplyr package
+:::
+
 ## Acknowledgements and references
 
 Thanks for attending ! 👏🏽👏🏽👏🏽👏🏽
 
 ::: {style="font-size:30px"}
-The slides can be downloaded at: <https://github.com/mcewenkhundi/functionalpurrr>
+The slides can be downloaded at:
+
+<https://mcewenkhundi.github.io/functionalpurrr/>
+
+<https://github.com/mcewenkhundi/functionalpurrr>
 
 The slides were inspired by a talk that Tom Jemmett gave at [NHS-R Community](https:://github.com/NHS-R-Community/Webinars/)
 

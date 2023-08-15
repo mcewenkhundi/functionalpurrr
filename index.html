@@ -588,7 +588,7 @@ McEwen Khundi, PhD
 x + y
 
 }
-&lt;bytecode: 0x7fe0c75c7a58&gt;</code></pre>
+&lt;bytecode: 0x7fe466d15ea8&gt;</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -606,7 +606,7 @@ x + y
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x7fe0d5df9910&gt;
+&lt;bytecode: 0x7fe474e0c228&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -1109,7 +1109,7 @@ $d
 <pre><code>function(x){
   median(x) + 2
 }
-&lt;bytecode: 0x7fe0b655a908&gt;</code></pre>
+&lt;bytecode: 0x7fe4655235a8&gt;</code></pre>
 </div>
 </div>
 <div style="font-size:30px">
@@ -2078,12 +2078,39 @@ $year
 </section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
+<div style="font-size:30px">
+<ul>
+<li><p>Map is an example of a functional: a function that accepts other functions as input and returns a vector as output.</p>
+<ul>
+<li><p>To use a map function:</p>
+<ul>
+<li><p>Decide how you can solve the problem for a single element of a vector. Purrr functions help in generalizing the solution to every element of the vector.</p></li>
+<li><p>In other words, purrr functions assist in breaking down a complex problem into small steps. It is also possible to compose data analysis steps using pipes</p></li>
+</ul></li>
+</ul></li>
+<li><p>In general, the first argument of map is an input vector (you would like to loop over)</p></li>
+<li><p>The second argument is the function you want to be applied to each element of the vector.</p></li>
+</ul>
+</div>
+</section>
+<section id="summary-1" class="slide level2">
+<h2>Summary…</h2>
+<div style="font-size:35px">
+<ul>
+<li><p>The function passed to map, can be a function from a package, created or an anonymous function</p></li>
+<li><p>There are map_* that return a specif vector type</p></li>
+<li><p>Other map function types that we haven’t covered, i.e.&nbsp;walk, pmap…</p></li>
+<li><p>The knowledge of map, extends to other iterative functionals in the tidyverse such as the across function in dplyr package</p></li>
+</ul>
+</div>
 </section>
 <section id="acknowledgements-and-references" class="slide level2">
 <h2>Acknowledgements and references</h2>
 <p>Thanks for attending ! 👏🏽👏🏽👏🏽👏🏽</p>
 <div style="font-size:30px">
-<p>The slides can be downloaded at: <a href="https://github.com/mcewenkhundi/functionalpurrr" class="uri">https://github.com/mcewenkhundi/functionalpurrr</a></p>
+<p>The slides can be downloaded at:</p>
+<p><a href="https://mcewenkhundi.github.io/functionalpurrr/" class="uri">https://mcewenkhundi.github.io/functionalpurrr/</a></p>
+<p><a href="https://github.com/mcewenkhundi/functionalpurrr" class="uri">https://github.com/mcewenkhundi/functionalpurrr</a></p>
 <p>The slides were inspired by a talk that Tom Jemmett gave at <a href="https:://github.com/NHS-R-Community/Webinars/">NHS-R Community</a></p>
 <p><strong>Books</strong></p>
 <ul>
