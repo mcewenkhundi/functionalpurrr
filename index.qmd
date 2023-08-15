@@ -534,7 +534,7 @@ max_func(list_df)
 Oops! We have violated the the rule of copying and pasting 😅
 :::
 
-# Functionals
+# Functional (Iteration)
 
 ## Remember that a function can be passed as an argument in R 🤩
 
@@ -570,6 +570,7 @@ The **map( )** function is similar to the **summary_fun( )** that we have just s
 
 ```{r}
 #| echo: true
+#| message: true
 
 #Purrr package is part of the tidyverse
 library(tidyverse)
@@ -754,7 +755,7 @@ penguins |>
 
 ```
 
-## Conditional map
+## Find the mean of numeric variables (Conditional map)
 
 Since penguins dataset has other non-numeric variables, we need a conditional map 😅
 
@@ -842,13 +843,13 @@ The purrr functions are more consistent, once you master one it is easier to use
 ## Summary
 
 ::: {style="font-size:30px"}
--   Map is an example of a functional: a function that accepts other functions as input and returns a vector as output.
+-   `Map` is an example of a functional: a function that accepts other functions as input and returns a vector as output.
 
     -   To use a map function:
 
         -   Decide how you can solve the problem for a single element of a vector. Purrr functions help in generalizing the solution to every element of the vector.
 
-        -   In other words, purrr functions assist in breaking down a complex problem into small steps. It is also possible to compose data analysis steps using pipes
+        -   In other words, purrr functions assist in breaking down a complex problem into small steps. It is also possible to compose data analysis steps using purrr functions pipes
 
 -   In general, the first argument of map is an input vector (you would like to loop over)
 
@@ -858,13 +859,13 @@ The purrr functions are more consistent, once you master one it is easier to use
 ## Summary...
 
 ::: {style="font-size:35px"}
--   The function passed to map, can be a function from a package, created or an anonymous function
+-   The function passed to `map`, can be a function from a package, created or an anonymous function
 
 -   There are map\_\* that return a specif vector type
 
--   Other map function types that we haven't covered, i.e. walk, pmap...
+-   Other map function types that we haven't covered, i.e. `walk`, `pmap`...
 
--   The knowledge of map, extends to other iterative functionals in the tidyverse such as the across function in dplyr package
+-   The knowledge of map, extends to other iterative functionals in the tidyverse such as the `across` function in dplyr package
 :::
 
 ## Acknowledgements and references
