@@ -9,15 +9,39 @@ editor: visual
 slide-number: true
 ---
 
+## Who I am:
+
+-   I am from Malawi 🇲🇼
+
+-   I have been using R for over 7 years and am Tidyverse certified 😄
+
+-   I have a background in statistics and computer science
+
+-   I work in the field of public health 😷
+
+### Who you are:
+
+-   Intermediate to advanced R user, beginners are welcome too 🙋🏽
+
 ## What is a functional programming language
 
-In R, this means that you can do many of the things with a function that you can do with a vector: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
+::: {style="font-size:30px"}
+In R, this means that you can do many of the things with a function that you can do with a vector:
+
+-   you can assign them to variables
+
+-   store them in lists
+
+-   pass them as arguments to other functions
+
+-   create them inside functions...
 
 [Advanced R: Functional programming](https://adv-r.hadley.nz/fp.html#functional-programming-languages)
 
 **The purrr R package provides a convenient toolkit for doing functional programming in R**
 
 [Purrr R package overview page](https://purrr.tidyverse.org/#overview)
+:::
 
 # Functions
 
@@ -42,7 +66,7 @@ tripple_func <- function(x){
 ```
 
 ```{r, echo=TRUE}
-tripple_func(2)
+tripple_func(x = 2)
 ```
 
 ## Arguments
@@ -54,7 +78,6 @@ Arguments are like variables that we pass to functions when we "call" the functi
 A function with zero arguments
 
 ```{r}
-#| code-line-numbers: "|2"
 #| echo: true
 
 my_func <- function(){
@@ -69,7 +92,6 @@ my_func()
 A function that accepts two arguments
 
 ```{r}
-#| code-line-numbers: "|2"
 #| echo: true
 
 add_two_numbers <- function(x, y){
@@ -87,7 +109,6 @@ add_two_numbers(x = 3, y = 2)
 Can accept any number of arguments by using the ... in its parenthesis. In R this is often used to pass arguments that are passed to another function
 
 ```{r}
-#| code-line-numbers: "|2"
 #| echo: true
 
 add_numbers <- function(..., allowmissing = TRUE){
@@ -109,7 +130,6 @@ Variables that are defined within the function take precedence
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "2"
 x <- 10; y <- 20
 g02 <- function(){
   x <- 1
@@ -129,7 +149,6 @@ But if a variable is not defined inside a function R looks one level up
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "2"
 x <- 2
 
 g03 <- function() {
@@ -153,7 +172,6 @@ If the argument with default value is not assigned a value at call, the default 
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "1"
 
 my_func <- function(x, y=3) {
 
@@ -172,7 +190,6 @@ You can also provide a different value for y, this will override the default val
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "1"
 my_func(x = 4, y = 5)
 ```
 :::
@@ -231,7 +248,7 @@ mean
 
 # Vectors
 
-## Types of vectors
+## Types of vectors (Data types)
 
 Vectors are of two main types in R: atomic vectors and lists.
 
@@ -643,7 +660,7 @@ map_dbl(list_df, function(x){ median(x) + 2})
 ```
 
 ::: {style="font-size:30px"}
-Starting with R 4.10, R now has a shortcut for anonymoous functions
+Starting with R 4.10, R now has a shortcut for anonymous functions
 :::
 
 ```{r}
@@ -651,6 +668,10 @@ Starting with R 4.10, R now has a shortcut for anonymoous functions
 
 map_dbl(list_df, \(x){ median(x) + 2})
 ```
+
+::: {style="font-size:30px"}
+Purrr also supports `~median(.x) + 2` shortcut
+:::
 
 ## Passing arguments to a function in map
 
@@ -702,11 +723,6 @@ tibble_df <- as_tibble(list_df)
 
 #check the new class
 class(tibble_df)
-
-#underlying vector type
-typeof(tibble_df)
-
-tibble_df
 
 ```
 :::
@@ -834,18 +850,18 @@ See the references below to explore other map variants:
 
 The apply family of function in base R do similar tasks as the purrr functions
 
--   apply, lapply are similar to map
+-   `apply`, `lapply` are similar to `map`
 
--   sapply, vapply most similar to the map\_\* functions but are more verbose
+-   `sapply`, `vapply` most similar to the `map_*` functions but are more verbose
 
-The purrr functions are more consistent, once you master one it is easier to use the rest and they are also well documented
+The `purrr` functions are more consistent, once you master one it is easier to use the rest and they are also well documented
 
 ## Summary
 
 ::: {style="font-size:30px"}
 -   `Map` is an example of a functional: a function that accepts other functions as input and returns a vector as output.
 
-    -   To use a map function:
+    -   To use a `map` function:
 
         -   Decide how you can solve the problem for a single element of a vector. Purrr functions help in generalizing the solution to every element of the vector.
 

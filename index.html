@@ -407,12 +407,33 @@ McEwen Khundi, PhD
 
   <p class="date">2023-08-16</p>
 </section>
+<section id="who-i-am" class="slide level2">
+<h2>Who I am:</h2>
+<ul>
+<li><p>I am from Malawi 🇲🇼</p></li>
+<li><p>I have been using R for over 7 years and am Tidyverse certified 😄</p></li>
+<li><p>I have a background in statistics and computer science</p></li>
+<li><p>I work in the field of public health 😷</p></li>
+</ul>
+<h3 id="who-you-are">Who you are:</h3>
+<ul>
+<li>Intermediate to advanced R user, beginners are welcome too 🙋🏽</li>
+</ul>
+</section>
 <section id="what-is-a-functional-programming-language" class="slide level2">
 <h2>What is a functional programming language</h2>
-<p>In R, this means that you can do many of the things with a function that you can do with a vector: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.</p>
+<div style="font-size:30px">
+<p>In R, this means that you can do many of the things with a function that you can do with a vector:</p>
+<ul>
+<li><p>you can assign them to variables</p></li>
+<li><p>store them in lists</p></li>
+<li><p>pass them as arguments to other functions</p></li>
+<li><p>create them inside functions…</p></li>
+</ul>
 <p><a href="https://adv-r.hadley.nz/fp.html#functional-programming-languages">Advanced R: Functional programming</a></p>
 <p><strong>The purrr R package provides a convenient toolkit for doing functional programming in R</strong></p>
 <p><a href="https://purrr.tidyverse.org/#overview">Purrr R package overview page</a></p>
+</div>
 </section>
 <section>
 <section id="functions" class="title-slide slide level1 center">
@@ -428,7 +449,7 @@ McEwen Khundi, PhD
 <p>A function is made up of arguments, (the text between the parentheses), and the body (the text between the curly brackets).</p>
 <p>The last line to be executed is returned</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">tripple_func</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">tripple_func</span>(<span class="at">x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6</code></pre>
 </div>
@@ -441,7 +462,7 @@ McEwen Khundi, PhD
 <div class="column" style="width:40%;">
 <p>A function with zero arguments</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>my_func <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>my_func <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="dv">3</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>}</span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="fu">my_func</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -452,7 +473,7 @@ McEwen Khundi, PhD
 </div><div class="column" style="width:60%;">
 <p>A function that accepts two arguments</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>add_two_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>add_two_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
 <span id="cb5-2"><a href="#cb5-2"></a>  x <span class="sc">+</span> y</span>
 <span id="cb5-3"><a href="#cb5-3"></a>}</span>
 <span id="cb5-4"><a href="#cb5-4"></a></span>
@@ -468,7 +489,7 @@ McEwen Khundi, PhD
 <h2>Any number of arguments:</h2>
 <p>Can accept any number of arguments by using the … in its parenthesis. In R this is often used to pass arguments that are passed to another function</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(..., <span class="at">allowmissing =</span> <span class="cn">TRUE</span>){</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>add_numbers <span class="ot">&lt;-</span> <span class="cf">function</span>(..., <span class="at">allowmissing =</span> <span class="cn">TRUE</span>){</span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">sum</span>(..., <span class="at">na.rm =</span> allowmissing)</span>
 <span id="cb7-3"><a href="#cb7-3"></a>}</span>
 <span id="cb7-4"><a href="#cb7-4"></a></span>
@@ -487,7 +508,7 @@ McEwen Khundi, PhD
 <p>Variables that are defined within the function take precedence</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span>; y <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span>; y <span class="ot">&lt;-</span> <span class="dv">20</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>g02 <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
 <span id="cb9-3"><a href="#cb9-3"></a>  x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a>  y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
@@ -505,7 +526,7 @@ McEwen Khundi, PhD
 <p>But if a variable is not defined inside a function R looks one level up</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a>g03 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb11-4"><a href="#cb11-4"></a>  y <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -528,7 +549,7 @@ McEwen Khundi, PhD
 <p>If the argument with default value is not assigned a value at call, the default value is used</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>my_func <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">y=</span><span class="dv">3</span>) {</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>my_func <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">y=</span><span class="dv">3</span>) {</span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a>x <span class="sc">+</span> y</span>
 <span id="cb13-4"><a href="#cb13-4"></a></span>
@@ -544,7 +565,7 @@ McEwen Khundi, PhD
 <p>You can also provide a different value for y, this will override the default value</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">my_func</span>(<span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">my_func</span>(<span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
@@ -588,7 +609,7 @@ McEwen Khundi, PhD
 x + y
 
 }
-&lt;bytecode: 0x7f94287529e8&gt;</code></pre>
+&lt;bytecode: 0x7fde4bc56ee0&gt;</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -606,7 +627,7 @@ x + y
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x7f941f69ec28&gt;
+&lt;bytecode: 0x7fde2afd6828&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -618,8 +639,8 @@ UseMethod("mean")
 <h1>Vectors</h1>
 
 </section>
-<section id="types-of-vectors" class="slide level2">
-<h2>Types of vectors</h2>
+<section id="types-of-vectors-data-types" class="slide level2">
+<h2>Types of vectors (Data types)</h2>
 <p>Vectors are of two main types in R: atomic vectors and lists.</p>
 <ol type="1">
 <li><p>For atomic vectors all elements must have the same type</p>
@@ -1119,7 +1140,7 @@ $d
 <pre><code>function(x){
   median(x) + 2
 }
-&lt;bytecode: 0x7f9428abac98&gt;</code></pre>
+&lt;bytecode: 0x7fde2bd4f100&gt;</code></pre>
 </div>
 </div>
 <div style="font-size:30px">
@@ -1133,7 +1154,7 @@ $d
 </div>
 </div>
 <div style="font-size:30px">
-<p>Starting with R 4.10, R now has a shortcut for anonymoous functions</p>
+<p>Starting with R 4.10, R now has a shortcut for anonymous functions</p>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a><span class="fu">map_dbl</span>(list_df, \(x){ <span class="fu">median</span>(x) <span class="sc">+</span> <span class="dv">2</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1141,6 +1162,9 @@ $d
 <pre><code>       a        b        c        d 
 2.126721 2.441144 1.606057 1.570735 </code></pre>
 </div>
+</div>
+<div style="font-size:30px">
+<p>Purrr also supports <code>~median(.x) + 2</code> shortcut</p>
 </div>
 </section>
 <section id="passing-arguments-to-a-function-in-map" class="slide level2">
@@ -1201,40 +1225,17 @@ $d
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a><span class="co">#underlying vector type</span></span>
-<span id="cb110-2"><a href="#cb110-2"></a><span class="fu">typeof</span>(tibble_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "list"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a>tibble_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 4
-          a       b       c         d
-      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
- 1 -0.241   -0.0420  0.610   0.0949  
- 2 -0.500   -0.932   0.988  -0.995   
- 3 -0.395   -1.16   -0.931  -0.000235
- 4 -0.795   -0.496   0.0438 -0.389   
- 5  0.540    0.627  -0.552  -0.979   
- 6  1.49     0.255  -0.543  -1.73    
- 7  0.468    0.904  -0.245  -1.59    
- 8  0.261    0.710  -0.549  -0.385   
- 9  0.683    0.706  -1.25   -0.428   
-10 -0.00719  1.41    0.892  -1.00    
-11 -0.311    0.0632 -0.819   1.92    
-12  0.448    0.725   0.231  -0.431   </code></pre>
-</div>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1"></a><span class="co">#mean of each column</span></span>
-<span id="cb114-2"><a href="#cb114-2"></a><span class="fu">map_dbl</span>(tibble_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a><span class="co">#mean of each column</span></span>
+<span id="cb110-2"><a href="#cb110-2"></a><span class="fu">map_dbl</span>(tibble_df, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         a          b          c          d 
  0.1365440  0.2305511 -0.1769054 -0.4934504 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1"></a><span class="co">#class of each column</span></span>
-<span id="cb116-2"><a href="#cb116-2"></a><span class="fu">map_chr</span>(tibble_df, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a><span class="co">#class of each column</span></span>
+<span id="cb112-2"><a href="#cb112-2"></a><span class="fu">map_chr</span>(tibble_df, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        a         b         c         d 
 "numeric" "numeric" "numeric" "numeric" </code></pre>
@@ -1247,13 +1248,13 @@ $d
 <h2>The penguis dataset</h2>
 <p><a href="https://allisonhorst.github.io/palmerpenguins/">more about the palmerpenguins</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1"></a><span class="co">#install.packages("palmerpenguins")</span></span>
-<span id="cb118-2"><a href="#cb118-2"></a></span>
-<span id="cb118-3"><a href="#cb118-3"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb118-4"><a href="#cb118-4"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">'palmerpenguins'</span>)</span>
-<span id="cb118-5"><a href="#cb118-5"></a></span>
-<span id="cb118-6"><a href="#cb118-6"></a><span class="co">#explore the dataset</span></span>
-<span id="cb118-7"><a href="#cb118-7"></a>gt<span class="sc">::</span><span class="fu">gt</span>(<span class="fu">head</span>(penguins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1"></a><span class="co">#install.packages("palmerpenguins")</span></span>
+<span id="cb114-2"><a href="#cb114-2"></a></span>
+<span id="cb114-3"><a href="#cb114-3"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb114-4"><a href="#cb114-4"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">'palmerpenguins'</span>)</span>
+<span id="cb114-5"><a href="#cb114-5"></a></span>
+<span id="cb114-6"><a href="#cb114-6"></a><span class="co">#explore the dataset</span></span>
+<span id="cb114-7"><a href="#cb114-7"></a>gt<span class="sc">::</span><span class="fu">gt</span>(<span class="fu">head</span>(penguins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div id="xsxcrryzef" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -1746,19 +1747,19 @@ $d
 <section id="calculate-some-summaries-for-each-column-of-the-penguins-dataset" class="slide level2">
 <h2>Calculate some summaries for each column of the penguins dataset</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1"></a><span class="co">#class of each column</span></span>
-<span id="cb119-2"><a href="#cb119-2"></a>penguins <span class="sc">%&gt;%</span></span>
-<span id="cb119-3"><a href="#cb119-3"></a>  <span class="fu">map_chr</span>(class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a><span class="co">#class of each column</span></span>
+<span id="cb115-2"><a href="#cb115-2"></a>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb115-3"><a href="#cb115-3"></a>  <span class="fu">map_chr</span>(class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          species            island    bill_length_mm     bill_depth_mm 
          "factor"          "factor"         "numeric"         "numeric" 
 flipper_length_mm       body_mass_g               sex              year 
         "integer"         "integer"          "factor"         "integer" </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1"></a><span class="co">#Number of unique values in each column</span></span>
-<span id="cb121-2"><a href="#cb121-2"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb121-3"><a href="#cb121-3"></a>  <span class="fu">map</span>(unique) <span class="sc">|&gt;</span></span>
-<span id="cb121-4"><a href="#cb121-4"></a>  <span class="fu">map_dbl</span>(length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1"></a><span class="co">#Number of unique values in each column</span></span>
+<span id="cb117-2"><a href="#cb117-2"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb117-3"><a href="#cb117-3"></a>  <span class="fu">map</span>(unique) <span class="sc">|&gt;</span></span>
+<span id="cb117-4"><a href="#cb117-4"></a>  <span class="fu">map_dbl</span>(length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          species            island    bill_length_mm     bill_depth_mm 
                 3                 3               165                81 
@@ -1771,7 +1772,7 @@ flipper_length_mm       body_mass_g               sex              year
 <h2>Find the mean of numeric variables (Conditional map)</h2>
 <p>Since penguins dataset has other non-numeric variables, we need a conditional map 😅</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1"></a><span class="fu">map_if</span>(penguins, is.numeric, mean, <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1"></a><span class="fu">map_if</span>(penguins, is.numeric, mean, <span class="at">na.rm =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$species
   [1] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
@@ -1937,18 +1938,18 @@ $year
 <section id="note-dplyr-has-better-options-for-achieving-the-previous-map-use" class="slide level2">
 <h2>Note dplyr has better options for achieving the previous map use</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb125-2"><a href="#cb125-2"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb121-2"><a href="#cb121-2"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
            &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
 1           43.9          17.2              201.       4202. 2008.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1"></a><span class="co">#Can also do it by species of penguis</span></span>
-<span id="cb127-2"><a href="#cb127-2"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb127-3"><a href="#cb127-3"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb127-4"><a href="#cb127-4"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1"></a><span class="co">#Can also do it by species of penguis</span></span>
+<span id="cb123-2"><a href="#cb123-2"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb123-3"><a href="#cb123-3"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb123-4"><a href="#cb123-4"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 6
   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
@@ -1963,14 +1964,14 @@ $year
 <h2>Example of reading multiple files</h2>
 <p>Imagine that each of the species of penguin are in a separate csv file present in the data folder</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1"></a><span class="fu">dir</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1"></a><span class="fu">dir</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Adelie.csv"    "Chinstrap.csv" "Gentoo.csv"   </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"data"</span>)</span>
-<span id="cb131-2"><a href="#cb131-2"></a></span>
-<span id="cb131-3"><a href="#cb131-3"></a><span class="co">#Read in the separate species of penquis</span></span>
-<span id="cb131-4"><a href="#cb131-4"></a><span class="fu">map</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1"></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"data"</span>)</span>
+<span id="cb127-2"><a href="#cb127-2"></a></span>
+<span id="cb127-3"><a href="#cb127-3"></a><span class="co">#Read in the separate species of penquis</span></span>
+<span id="cb127-4"><a href="#cb127-4"></a><span class="fu">map</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 # A tibble: 152 × 8
@@ -2030,7 +2031,7 @@ $year
 <p>The output of map is a list, in this case all the files are of the same structure, we might want to turn this into a single data frame.</p>
 <p>map_dfr function returns a dataframe by binding all rows</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1"></a><span class="fu">map_dfr</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1"></a><span class="fu">map_dfr</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,files), read_csv) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 344 × 8
    species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
@@ -2057,7 +2058,7 @@ $year
 <p>For instance if you have a function that takes two vectors there is map2</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1"></a><span class="fu">map2</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, \(x,y){x <span class="sc">+</span> y})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1"></a><span class="fu">map2</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>, \(x,y){x <span class="sc">+</span> y})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] 6
@@ -2081,10 +2082,10 @@ $year
 <h2>Base R map functions</h2>
 <p>The apply family of function in base R do similar tasks as the purrr functions</p>
 <ul>
-<li><p>apply, lapply are similar to map</p></li>
-<li><p>sapply, vapply most similar to the map_* functions but are more verbose</p></li>
+<li><p><code>apply</code>, <code>lapply</code> are similar to <code>map</code></p></li>
+<li><p><code>sapply</code>, <code>vapply</code> most similar to the <code>map_*</code> functions but are more verbose</p></li>
 </ul>
-<p>The purrr functions are more consistent, once you master one it is easier to use the rest and they are also well documented</p>
+<p>The <code>purrr</code> functions are more consistent, once you master one it is easier to use the rest and they are also well documented</p>
 </section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
@@ -2092,7 +2093,7 @@ $year
 <ul>
 <li><p><code>Map</code> is an example of a functional: a function that accepts other functions as input and returns a vector as output.</p>
 <ul>
-<li><p>To use a map function:</p>
+<li><p>To use a <code>map</code> function:</p>
 <ul>
 <li><p>Decide how you can solve the problem for a single element of a vector. Purrr functions help in generalizing the solution to every element of the vector.</p></li>
 <li><p>In other words, purrr functions assist in breaking down a complex problem into small steps. It is also possible to compose data analysis steps using purrr functions pipes</p></li>
