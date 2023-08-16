@@ -895,7 +895,9 @@ The slides can be downloaded at:
 
 <https://github.com/mcewenkhundi/functionalpurrr>
 
-The slides were inspired by a talk that Tom Jemmett gave at [NHS-R Community](https:://github.com/NHS-R-Community/Webinars/)
+The slides were inspired by a talk that Tom Jemmett gave at [NHS-R Community](https:://github.com/NHS-R-Community/Webinars/) [Slides made with Quarto](https://quarto.org/docs/presentations/revealjs/)
+
+MLW R club 👏🏽👏🏽👏🏽
 
 **Books**
 
