@@ -149,7 +149,7 @@ But if a variable is not defined inside a function R looks one level up
 
 ```{r}
 #| echo: true
-x <- 2
+x <- 10
 
 g03 <- function() {
   y <- 1
